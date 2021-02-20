@@ -4,35 +4,44 @@ from cnpj_field.models import CNPJField
 
 class MarketPlace(models.Model):
     id = models.AutoField(
-        db_column='proId',
+        db_column='mplId',
         primary_key=True,
     )
-    product_name = models.CharField(
-        db_column='proName', 
+    market_place_name = models.CharField(
+        db_column='mplName', 
         max_length=100,
         default='',
     )
-    product_description = models.CharField(
-        db_column='proDescription', 
+    market_place_description = models.CharField(
+        db_column='mplDescription', 
         max_length=255,
         default='',
     )
-    product_value = models.FloatField(
-        db_column='proValue',
+    site = models.FloatField(
+        db_column='mplSite',
         default=0
     )
-    categories = models.ManyToManyField(
-        'Category',
-        db_column='proCategories',
-        related_name='product',
+    contact_email = models.EmailField(
+        db_column='mplContactEmail', 
+        max_length=100,
+        default='',
+    )
+    phone_number = models.IntegerField(
+        db_column='mplPhoneNumber',
+        default=0,
+    )
+    technical_contact = models.CharField(
+        db_column='mplTechnicalContact',
+        max_length=255,
+        default='',
     )
 
     def __str__(self):
-        return f"{self.id} - {self.product_name} - {self.product_description} - {self.product_value} - {self.categories}"
+        return f"{self.id} - {self.market_place_name} - {self.site} - {self.technical_contact}"
 
     class Meta:
         managed = True
         db_table = 'MarketPlace'
-        unique_together = (('product_name', 'product_value', 'product_description', 'categories'),)
+        unique_together = (('market_place_name', 'site', 'market_place_description', 'contact_email', 'phone_number', 'technical_contact'),)
         
 admin.site.register(MarketPlace)
