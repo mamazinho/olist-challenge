@@ -1,4 +1,4 @@
-<section ng-controller="AthletesCtrl">
+<section ng-controller="MarketPlacesCtrl">
     <section class="content">
         <h4>This tab shows the athletes, group by the them and explicit all informations about him and give you each event that the athlete participated for period of his life.</h4>
         <p>Here you can manipulate all informations about an athlete, including his informations. You can create, edit and delete an athlete and his informations.</p>
@@ -24,28 +24,14 @@
         <div class="modal" ng-show="openCreateAthleteModal">
             <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
             <div class="content">
-                {% include 'modals/__createAthlete.html' %}
+                {% include 'modals/__createMarketPlace.html' %}
             </div>
         </div>
 
         <div class="modal" ng-show="openEditAthleteModal">
             <div class="overlay" ng-click="openEditAthleteModal=false"></div>
             <div class="content">
-                {% include 'modals/__editAthlete.html' %}
-            </div>
-        </div>
-
-        <div class="modal" ng-show="openCreateInfosModal">
-            <div class="overlay" ng-click="openCreateInfosModal=false"></div>
-            <div class="content">
-                {% include 'modals/__createInfos.html' %}
-            </div>
-        </div>
-
-        <div class="modal" ng-show="openEditInfosModal">
-            <div class="overlay" ng-click="openEditInfosModal=false"></div>
-            <div class="content">
-                {% include 'modals/__editInfos.html' %}
+                {% include 'modals/__editMarketPlace.html' %}
             </div>
         </div>
 

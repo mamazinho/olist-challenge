@@ -1,4 +1,4 @@
-challenge.controller('EventCtrl', function($scope, HttpFctr, $rootScope){
+challenge.controller('CategoriesCtrl', function($scope, HttpFctr, $rootScope){
 
   $scope.__init__ = function(){
     $scope.athletes = []

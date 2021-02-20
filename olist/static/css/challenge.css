@@ -5,7 +5,7 @@
 
 body {
     font: 15px/1.5 Sans-serif;
-    background-color: #f2f2f2;
+    background-color: #e0e0e0;
 }
 
 button:focus {
@@ -14,39 +14,38 @@ button:focus {
 }
 
 button {
-    background: rgb(255, 81, 0);
+    background: #fff;
     border: none;
     text-align: center;
     padding: 15px 20px;
-    color: #fff;
+    color: #0d2ad0;
     font-weight: bold;
     cursor: pointer;
     height: 54px;
-    border-radius: 27px;
+    border-radius: 32px;
     outline: none;
     font-size: 14px;
     transition: 300ms;
 }
 button:hover {
-    background-color:#ff0000;
-    border: 2px solid#ff0000;
+    color:#364ef7;
 }
 
 button.edit {
-    background-color: #02185d;
+    background-color: #4f62e0;
+    color: #fff;
 }
 button.edit:hover {
-    background-color:#01082c;
-    border: 2px solid#01082c;
+    background-color:#364ef7;
 }
 
 button.main {
-    background-color: #00ec98;
+    background-color: #364ef7;
+    color: #fff;
 }
 
 button.main:hover {
-    background-color:#1ca87d;
-    border: 2px solid#1ca87d;
+    background-color:#4f62e0;
 }
 
 .buttons {

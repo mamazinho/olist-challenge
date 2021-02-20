@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Celero Challenge</title>
+        <title>Olist Challenge</title>
 
         <!-- Libs -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -16,32 +16,47 @@
 
         <!-- Controllers-->
         <script src="static/js/ctrl/baseCtrl.js"></script>
-        <script src="static/js/ctrl/athletesCtrl.js"></script>
-        <script src="static/js/ctrl/eventsCtrl.js"></script>
+        <script src="static/js/ctrl/categoriesCtrl.js"></script>
+        <script src="static/js/ctrl/marketPlacesCtrl.js"></script>
+        <script src="static/js/ctrl/productsCtrl.js"></script>
+        <script src="static/js/ctrl/sellersCtrl.js"></script>
 
     </head>
 
     <body id="challenge" ng-app="challenge" ng-controller="BaseCtrl">
         <section class="container">
-            <h3>Welcome to celero challenge</h3>
+            <h3>Welcome to Olist challenge</h3>
             <p>This platform it's a complete CRUD of a complex data structure, with Back-end in Django rest framework and Front-end in AngularJs.</p>
             <p>
-                <span>It's feeded by a unique CSV that is readed by a command in django. The project use the Serializers, ViewSets and routers of Django Rest Framework.<span>
+                <span>The project use the Serializers, ViewSets and routers of Django Rest Framework.<span>
                 <span>More details you can find on README documentation.</span>
             </p>
             <h4>To change between tabs, click in the buttons below</h4>
             <div class="buttons">
-                <button ng-class="{main: active_tab=='athletes'}" ng-click="active_tab='athletes'">Athletes</button>
-                <button ng-class="{main: active_tab=='events'}" ng-click="active_tab='events'">Events</button>
+                <button ng-class="{main: active_tab=='products'}" ng-click="active_tab='products'">Products</button>
+                <button ng-class="{main: active_tab=='sellers'}" ng-click="active_tab='sellers'">Sellers</button>
+                <button ng-class="{main: active_tab=='marketplaces'}" ng-click="active_tab='marketplaces'">Market Places</button>
+                <button ng-class="{main: active_tab=='categories'}" ng-click="active_tab='categories'">Categories</button>
             </div>
         </section>
 
-        <section class="container" ng-if="active_tab=='athletes'">
-            {% include 'athletes.html' %}
+        <section class="container" ng-if="active_tab=='products'">
+            {% include 'products.html' %}
         </section>
 
-        <section class="container" ng-if="active_tab=='events'">
-            {% include 'events.html' %}
+        <section class="container" ng-show="active_tab=='sellers'">
+            <span>nossa</span>
+            {% include 'sellers.html' %}
+        </section>
+
+        <section class="container" ng-if="active_tab=='marketplaces'">
+            <span>nossa</span>
+            {% include 'marketPlaces.html' %}
+        </section>
+
+        <section class="container" ng-if="active_tab=='categories'">
+            <span>nossa</span>
+            {% include 'categories.html' %}
         </section>
     </body>
 </html>
