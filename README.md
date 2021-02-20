@@ -26,10 +26,6 @@ as mini-framework better than vue.
 but I would not have the same easily to take his infos for each event. So, it's better that info has many events and
 many events with that infos instead athlete. But I am open for suggestions about data modeling or another issue.
 
-***Time to run command to populate database***
-* I test two ways, the most used to perform a batch is the bulk_create, to make in one query for db. I have tried to follow this way (you can find the code in 'populateDB2.py' file), but the perform gain was very low, because it's slow to read and populate the lists, and it's just a test, I left this file only to example of idea, but not finished. The other way, this works, was make the basic, get_or_create (you can find the code in 'populateDB.py'). Both versions can take more than half-hour to run all queries. For this reason I left a sql file, if you have no time to wait all process of populate db, the better way is run the command 
-`mysql celero < challenge/utils/athlete_events.sql` after migrate. I am accepting suggestions of everyone, make this have a nice performance was the hardest part for me.
-
 ***Why Heroku?***
 * Heroku was the best cost benefit that I found, it offer in free plan 10.000 lines in tables on database and has easily intergration with github.
 
@@ -57,7 +53,7 @@ You can find how make your setup and run the project in your Linux machine in th
     $ python manage.py migrate
     $ python manage.py populateDB
     or, the fast way to populate:
-    $ sudo mysql olist < challenge/utils/olist.sql
+    $ sudo mysql olist < olist/utils/olist.sql
 
 ## How to Run:
     $ python manage.py runserver

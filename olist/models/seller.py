@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-from localflavor.br.forms import BRCNPJField
 
 class Seller(models.Model):
     id = models.AutoField(
@@ -17,9 +16,9 @@ class Seller(models.Model):
         max_length=255,
         default='',
     )
-    seller_cnpj = BRCNPJField(
+    seller_cnpj = models.IntegerField(
         db_column='selCNPJ',
-        default=''
+        default=0,
     )
     contact_email = models.EmailField(
         db_column='selContactEmail', 

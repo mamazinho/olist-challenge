@@ -32,6 +32,6 @@ class Product(models.Model):
     class Meta:
         managed = True
         db_table = 'Product'
-        unique_together = (('product_name', 'product_value', 'product_description', 'categories'),)
+        unique_together = (('product_name', 'product_value', 'product_description'),)
         
 admin.site.register(Product)

@@ -2,4 +2,3 @@ Django
 requests
 mysqlclient
 djangorestframework
-django-localflavor

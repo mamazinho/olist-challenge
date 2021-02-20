@@ -21,9 +21,6 @@ Leia essa documentação em [EN-US](README.md)
 ***Por que a relação ManyToMany ocorre no Athlete_infos e não no Atleta?***
 * Se a relação fosse feita usando o atleta eu poderia abrir o atleta e ter todos os eventos que ele participou mais facilmente, mas eu não teria a mesma facilidade para pegar as informações dos atletas por evento. Então, é melhor a informação do atleta ter vários eventos e vários eventos com essas informações ao invés do atleta em si. Mas estou aberto para receber sugestões sobre modelagem de dados ou qualquer outro problema.
 
-***Tempo para rodar o comando de popular o banco de dados***
-* Eu testei dois caminhos, o mais usado para performar em batchs é o bulk_create, para fazer apenas uma query para o banco de dados. Eu tentei seguir esse caminho (disponível no arquivo 'populateDB2.py'), mas o ganho de performance ainda é baixo, porque ainda demora muito para ler e popular as listas, e foi apenas um teste, eu deixei o arquivo como uma ideia não finalizada. Outro caminho, que funcionou, foi usar o basico get_or_create (disponível no arquivo 'populateDB.py'). Ambas as versões podem levar mais de meia hora para rodar todas as queries necessárias. Por esse motivo eu deixei um arquivo sql, caso não queira esperar todo o processo para popular o banco de dados, é melhor rodar o comando `mysql celero < challenge/utils/athlete_events.sql` depois de fazer as migrations. Estou aceitando sugestões,  fazer a rotina performar bem foi a parte mais difícil para mim.
-
 ***Por que Heroku?***
 * Heroku foi o melhor custo-benefício encontrado, pois oferece um plano gratuito com 10.000 linhas disponíveis para uso nas tabelas do banco de dados e tem uma integração muito fácil com o github.
 
@@ -51,7 +48,7 @@ Você pode entrar as instruções para rodar o projeto em sua máquina Linux no 
     $ python manage.py migrate
     $ python manage.py populateDB
     or, the fast way to populate:
-    $ sudo mysql olist < challenge/utils/olist.sql
+    $ sudo mysql olist < olist/utils/olist.sql
 
 ## Como rodar:
     $ python manage.py runserver
