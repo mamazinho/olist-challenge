@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-from cnpj_field.models import CNPJField
 
 class Category(models.Model):
     id = models.AutoField(

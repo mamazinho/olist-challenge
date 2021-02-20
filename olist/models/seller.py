@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from cnpj_field.models import CNPJField
+from localflavor.br.forms import BRCNPJField
 
 class Seller(models.Model):
     id = models.AutoField(
@@ -17,7 +17,7 @@ class Seller(models.Model):
         max_length=255,
         default='',
     )
-    seller_cnpj = CNPJField(
+    seller_cnpj = BRCNPJField(
         db_column='selCNPJ',
         default=''
     )

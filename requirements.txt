@@ -2,4 +2,4 @@ Django
 requests
 mysqlclient
 djangorestframework
-django-cnpjfield
+django-localflavor

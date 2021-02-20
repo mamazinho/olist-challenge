@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'rest_framework',
     'olist',
-    'cnpj_field',
 ]
 
 REST_FRAMEWORK = {

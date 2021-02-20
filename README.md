@@ -1,4 +1,4 @@
-This application makes part of Celero's Back-end challenge
+This application makes part of Olist's challenge
 
 Read this Doc in [PT-BR](README.pt.md)
 
@@ -34,10 +34,6 @@ many events with that infos instead athlete. But I am open for suggestions about
 * Heroku was the best cost benefit that I found, it offer in free plan 10.000 lines in tables on database and has easily intergration with github.
 
 
-## Servers:
-You can access the application in Heroku App clicking [here](https://challenge-celero.herokuapp.com/).
-Heroku has a limit in free plan about quantity of lines in tables on database, for this reason, this version has fewer records of athletes and events. I placed a limit too, for you create new Athletes, Events or Informations for Athletes.
-
 ## Run in local machine
 You can find how make your setup and run the project in your Linux machine in the text below:
 
@@ -46,22 +42,22 @@ You can find how make your setup and run the project in your Linux machine in th
     $ pip install --upgrade virtualenv
     $ sudo apt-get install python3 python3-pip virtualenvwrapper libmysqlclient-dev libsnappy-dev gcc libssl-dev
     $ source /etc/bash_completion.d/virtualenvwrapper
-    $ mkvirtualenv -p /usr/bin/python3 celc
+    $ mkvirtualenv -p /usr/bin/python3 olist
 
 ## How to create DB:
     $ sudo apt install mysql-server
-    $ sudo mysql -e "CREATE DATABASE celero"
-    $ sudo mysql -e "CREATE USER celero IDENTIFIED BY 'c3l3r0'"
-    $ sudo mysql -e "GRANT ALL ON celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
-    $ sudo mysql -e "GRANT ALL ON test_celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
+    $ sudo mysql -e "CREATE DATABASE olist"
+    $ sudo mysql -e "CREATE USER olist IDENTIFIED BY '0l1st'"
+    $ sudo mysql -e "GRANT ALL ON olist.* TO 'olist'@'%' IDENTIFIED BY '0l1st'"
+    $ sudo mysql -e "GRANT ALL ON test_olist.* TO 'olist'@'%' IDENTIFIED BY '0l1st'"
 
 ## How to Setup:
-    $ workon celc
+    $ workon olist
     $ pip install -r requirements.txt
     $ python manage.py migrate
     $ python manage.py populateDB
     or, the fast way to populate:
-    $ sudo mysql celero < challenge/utils/celero.sql
+    $ sudo mysql olist < challenge/utils/olist.sql
 
 ## How to Run:
     $ python manage.py runserver

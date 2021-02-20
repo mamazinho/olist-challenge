@@ -1,4 +1,4 @@
-Essa aplicação faz parte do desafio Back-end da Celero
+Essa aplicação faz parte do desafio da Olist
 
 Leia essa documentação em [EN-US](README.md)
 
@@ -28,10 +28,6 @@ Leia essa documentação em [EN-US](README.md)
 * Heroku foi o melhor custo-benefício encontrado, pois oferece um plano gratuito com 10.000 linhas disponíveis para uso nas tabelas do banco de dados e tem uma integração muito fácil com o github.
 
 
-## Servers:
-Você pode acessar a aplicação no Heroku App clicando [aqui](https://challenge-celero.herokuapp.com/).
-Heroku tem um limite na quantidade de linhas que podem ser salvas por tabela no banco de dados no seu plano gratuito, por isso, essa versão possui menos registro de atletas e eventos. Eu coloquei um limite fixo também, para deixar-lo criar novos atletas, eventos e informações.
-
 ## Rodando em uma máquina local
 Você pode entrar as instruções para rodar o projeto em sua máquina Linux no texto abaixo:
 
@@ -40,22 +36,22 @@ Você pode entrar as instruções para rodar o projeto em sua máquina Linux no 
     $ pip install --upgrade virtualenv
     $ sudo apt-get install python3 python3-pip virtualenvwrapper libmysqlclient-dev libsnappy-dev gcc libssl-dev
     $ source /etc/bash_completion.d/virtualenvwrapper
-    $ mkvirtualenv -p /usr/bin/python3 celc
+    $ mkvirtualenv -p /usr/bin/python3 olist
 
 ## Como configurar o banco de dados:
     $ sudo apt install mysql-server
-    $ sudo mysql -e "CREATE DATABASE celero"
-    $ sudo mysql -e "CREATE USER celero IDENTIFIED BY 'c3l3r0'"
-    $ sudo mysql -e "GRANT ALL ON celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
-    $ sudo mysql -e "GRANT ALL ON test_celero.* TO 'celero'@'%' IDENTIFIED BY 'c3l3r0'"
+    $ sudo mysql -e "CREATE DATABASE olist"
+    $ sudo mysql -e "CREATE USER olist IDENTIFIED BY '0l1st'"
+    $ sudo mysql -e "GRANT ALL ON olist.* TO 'olist'@'%' IDENTIFIED BY '0l1st'"
+    $ sudo mysql -e "GRANT ALL ON test_olist.* TO 'olist'@'%' IDENTIFIED BY '0l1st'"
 
 ## Como fazer as configurações básicas do projeto:
-    $ workon celc
+    $ workon olist
     $ pip install -r requirements.txt
     $ python manage.py migrate
     $ python manage.py populateDB
     or, the fast way to populate:
-    $ sudo mysql celero < challenge/utils/celero.sql
+    $ sudo mysql olist < challenge/utils/olist.sql
 
 ## Como rodar:
     $ python manage.py runserver
