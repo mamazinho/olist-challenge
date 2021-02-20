@@ -4,8 +4,8 @@
         <p>Here you can manipulate all informations about a product. You can create, edit and delete it. </p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateEventModal=true">Create new product</button>
-            <button class="edit" ng-click="openCreateEventModal=true">Edit product</button>
+            <button class="main" ng-click="openCreateProductModal=true">Create new product</button>
+            <button class="edit" ng-click="openEditProductModal=true">Edit product</button>
         </div>
         <div class="filter">
             <label>
@@ -17,15 +17,15 @@
             </label>
         </div>
 
-        <div class="modal" ng-show="openCreateEventModal">
-            <div class="overlay" ng-click="openCreateEventModal=false"></div>
+        <div class="modal" ng-show="openCreateProductModal">
+            <div class="overlay" ng-click="openCreateProductModal=false"></div>
             <div class="content">
                 {% include 'modals/__createProduct.html' %}
             </div>
         </div>
 
-        <div class="modal" ng-show="openEditEventModal">
-            <div class="overlay" ng-click="openEditEventModal=false"></div>
+        <div class="modal" ng-show="openEditProductModal">
+            <div class="overlay" ng-click="openEditProductModal=false"></div>
             <div class="content">
                 {% include 'modals/__editProduct.html' %}
             </div>

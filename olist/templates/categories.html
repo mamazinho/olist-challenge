@@ -7,8 +7,8 @@
         <p>The headers change automatically according the level in tree structure.</p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateAthleteModal=true">Create new category</button>
-            <button class="main" ng-click="openCreateInfosModal=true">Edit category</button>
+            <button class="main" ng-click="openCreateCategoryModal=true">Create new category</button>
+            <button class="main" ng-click="openEditCategoryModal=true">Edit category</button>
         </div>
 
         <div class="filter">
@@ -21,15 +21,15 @@
             </label>
         </div>
 
-        <div class="modal" ng-show="openCreateAthleteModal">
-            <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
+        <div class="modal" ng-show="openCreateCategoryModal">
+            <div class="overlay" ng-click="openCreateCategoryModal=false"></div>
             <div class="content">
                 {% include 'modals/__createCategory.html' %}
             </div>
         </div>
 
-        <div class="modal" ng-show="openEditAthleteModal">
-            <div class="overlay" ng-click="openEditAthleteModal=false"></div>
+        <div class="modal" ng-show="openEditCategoryModal">
+            <div class="overlay" ng-click="openEditCategoryModal=false"></div>
             <div class="content">
                 {% include 'modals/__editCategory.html' %}
             </div>

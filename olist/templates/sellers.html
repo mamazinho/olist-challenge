@@ -4,8 +4,8 @@
         <p>Here you can manipulate all informations about a seller. You can create, edit and delete it.</p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateAthleteModal=true">Create new seller</button>
-            <button class="main" ng-click="openCreateInfosModal=true">Edit seller</button>
+            <button class="main" ng-click="openCreateSellerModal=true">Create new seller</button>
+            <button class="main" ng-click="openEditSellerModal=true">Edit seller</button>
         </div>
 
         <div class="filter">
@@ -18,14 +18,14 @@
             </label>
         </div>
 
-        <div class="modal" ng-show="openCreateAthleteModal">
-            <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
+        <div class="modal" ng-show="openCreateSellerModal">
+            <div class="overlay" ng-click="openCreateSellerModal=false"></div>
             <div class="content">
                 {% include 'modals/__createSeller.html' %}
             </div>
         </div>
-        <div class="modal" ng-show="openCreateAthleteModal">
-            <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
+        <div class="modal" ng-show="openEditSellerModal">
+            <div class="overlay" ng-click="openEditSellerModal=false"></div>
             <div class="content">
                 {% include 'modals/__editSeller.html' %}
             </div>

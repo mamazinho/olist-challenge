@@ -1,33 +1,30 @@
-<h4>Create Event Modal</h4>
-<form id="createEvent">
+<h4>Create Product Modal</h4>
+<form id="createProduct">
     <label>
         <span>Name: </span>
-        <input name="event_name" ng-model="createEvent.event_name" type="text" placeholder="Event name">
+        <input name="event_name" ng-model="createProduct.name" type="text" placeholder="Product name">
     </label>
     <label>
-        <span>City: </span>
-        <input name="city" ng-model="createEvent.city" type="text" placeholder="City of this event">
+        <span>Description: </span>
+        <textarea name="city" ng-model="createProduct.description" placeholder="Product description"></textarea>
     </label>
     <label>
-        <span>Sport: </span>
-        <input name="sport" ng-model="createEvent.sport" type="text" placeholder="Sport of this event">
+        <span>Value: </span>
+        <input ng-model="createProduct.value" type="number" placeholder="Product value">
     </label>
     <label>
-        <span>Year: </span>
-        <input name="year" ng-model="createEvent.year" type="number" placeholder="Year of this event">
+        <span>Categories: </span>
+        <input name="categories" ng-model="createProduct.categories" type="number" placeholder="Year of this event">
     </label>
     <label>
-        <span>Season: </span>
-        <select name="season" ng-model="createEvent.season">
-            <option value="Summer">Summer</option>
-            <option value="Autumn">Autumn</option>
-            <option value="Winter">Winter</option>
-            <option value="Spring">Spring</option>
+        <span>Categories: </span>
+        <select ng-model="createProduct.categories">
+            <option ng-repeat="category in categories">{[ category ]}</option>
         </select>
     </label>
 
     <div class="buttons">
-        <button class="main" ng-click="createNewEvent()">Create</button>
-        <button class="cancel" ng-click="openCreateEventModal=false">Cancel</button>
+        <button class="main" ng-click="createProduct()">Create</button>
+        <button class="cancel" ng-click="openCreateProductModal=false">Cancel</button>
     </div>
 </form>

@@ -1,165 +1,90 @@
 challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
 
   $scope.__init__ = function(){
-    $scope.athletes = []
+    $scope.products = []
     $scope.treeIds = []
     $scope.secondTreeIds = []
     $scope.thirdTreeIds = []
     $scope.filter_name = ''
     $scope.renderHeader = 'generic'
-    $scope.openCreateAthleteModal = false
-    $scope.openEditAthleteModal = false
-    $scope.openCreateInfosModal = false
-    $scope.openEditInfosModal = false
-    $scope.createAthlete = {
-      'athlete_name': '',
+    $scope.openCreateProductModal = false
+    $scope.openEditProductModal = false
+    $scope.createProduct = {
+      'name': '',
+      'description': '',
+      'value': '',
+      'categories': '',
     }
-    $scope.createInfosAthlete = {
-      'athlete': '',
-      'sex': '',
-      'age': 0,
-      'height': 0,
-      'weight': 0,
-      'team': '',
-      'medal': '',
-      'event': ''
-    }
-    $scope.editAthlete = {
+    $scope.editProduct = {
       'id': '',
-      'athlete_name': '',
+      'name': '',
+      'description': '',
+      'value': '',
+      'categories': '',
     }
-    $scope.editInfosAthlete = {
-      'id': '',
-      'age': 0,
-      'sex': '',
-      'height': 0,
-      'weight': 0,
-      'team': '',
-      'medal': '',
-      'event': ''
-    }
-    $scope.offset_next = null,
-    $scope.offset_prev = null,
-    $scope.actual_offset = null
     $scope.params = {
-      'limit': 10,
-      'limitoffset': 20,
-      'offset': null,
-      'athlete_name': null
+      'name': '',
+      'description': '',
+      'value': '',
+      'categories': '',
     }
-    $scope.getAthletes()
+    $scope.getProducts()
   }
 
-  // Get the Athletes from API
-  $scope.getAthletes = function(goTo) {
-    if (goTo)
-      $scope.params.offset = goTo == 'next' ? $scope.offset_next : $scope.offset_prev
-    else
-      $scope.params.offset = $scope.actual_offset
-    $scope.actual_offset =  $scope.params.offset
-    HttpFctr('athletes', 'GET', {params: $scope.params}).then(function(response){
-      $scope.athletes = response.results
-      $scope.params.athlete_name = null
-      $scope.offset_next = response.next ? new URL(response.next).searchParams.get('offset') : null
-      $scope.offset_prev = response.previous ? new URL(response.previous).searchParams.get('offset') : null
+  // Get the Products from API
+  $scope.getProducts = function() {
+    HttpFctr('products', 'GET', {params: $scope.params}).then(function(response){
+      $scope.products = response.results
+      $scope.params.name = null
     })
   }
 
-  // Create new Athletes on API
-  $scope.createNewAthlete = function() {
-    var data = JSON.stringify($scope.createAthlete)
-    HttpFctr('athletes', 'POST', {data}).then(function(){
-      $scope.getAthletes()
-      $scope.openCreateAthleteModal = false
-      $scope.createAthlete = {}
+  // Create new Product on API
+  $scope.createProduct = function() {
+    var data = JSON.stringify($scope.createProduct)
+    HttpFctr('products', 'POST', {data}).then(function(){
+      $scope.getProducts()
+      $scope.openCreateProductModal = false
+      $scope.createProduct = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
     })
   }
 
-  // Update Athlete
-  $scope.updateAthlete = function() {
-    var data = JSON.stringify($scope.editAthlete)
-    HttpFctr(`athletes/${$scope.editAthlete.id}`, 'PUT', {data}).then(function(){
-      $scope.getAthletes()
-      $scope.openEditAthleteModal = false
-      $scope.editAthlete = {}
+  // Update Product
+  $scope.updateProduct = function() {
+    var data = JSON.stringify($scope.editProduct)
+    HttpFctr(`products/${$scope.editProduct.id}`, 'PUT', {data}).then(function(){
+      $scope.getProducts()
+      $scope.openEditProductModal = false
+      $scope.editProduct = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
     })
   }
 
-  // Delete Athlete
-  $scope.deleteAthlete = function(athlete_id) {
-    HttpFctr(`athletes/${athlete_id}`, 'DELETE').then(function(){
-      $scope.getAthletes()
+  // Delete Product
+  $scope.deleteProduct = function(product_id) {
+    HttpFctr(`products/${product_id}`, 'DELETE').then(function(){
+      $scope.getProducts()
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
     })
   }
 
-  // Create new atlhete infos
-  $scope.createInfos = function() {
-    $scope.createInfosAthlete.medal == '' ? $scope.createInfosAthlete.medal = null : $scope.createInfosAthlete.medal
-    $scope.createInfosAthlete.event = [$scope.createInfosAthlete.event]
-    var data = JSON.stringify($scope.createInfosAthlete)
-    HttpFctr('athletes-infos', 'POST', {data}).then(function(){
-      $scope.getAthletes()
-      $scope.openCreateInfosModal = false
-      $scope.createInfosAthlete = {}
-    }).catch((error) => {
-      console.log('ERROR >>', error)
-      alert(window.errorMessage)
-    })
-  }
-
-  // Update Infos Athlete
-  $scope.updateInfos = function() {
-    var method = 'PATCH'
-    $scope.editInfosAthlete.medal == '' ? $scope.editInfosAthlete.medal = null : $scope.editInfosAthlete.medal
-    $scope.editInfosAthlete.event = $scope.editInfosAthlete.event ? [$scope.editInfosAthlete.event] : null
-    console.log($scope.editInfosAthlete.event)
-    if ($scope.editInfosAthlete.event)
-      method = 'PUT'
-    var data = JSON.stringify($scope.editInfosAthlete)
-    HttpFctr(`athletes-infos/${$scope.editInfosAthlete.id}`, method, {data}).then(function(){
-      $scope.getAthletes()
-      $scope.openEditInfosModal = false
-      $scope.editInfosAthlete = {}
-    }).catch((error) => {
-      console.log('ERROR >>', error)
-      alert(window.errorMessage)
-    })
-  }
-
-  // Delete Infos Athlete
-  $scope.deleteInfos = function(infos_id) {
-    HttpFctr(`athletes-infos/${infos_id}`, 'DELETE').then(function(){
-      $scope.getAthletes()
-    }).catch((error) => {
-      console.log('ERROR >>', error)
-      alert(window.errorMessage)
-    })
-  }
-
-  $scope.editAthleteModal = function(athlete) {
-    $scope.openEditAthleteModal = true
-    $scope.editAthlete.id = athlete.id
-    $scope.editAthlete.athlete_name = athlete.athlete_name
-  }
-  $scope.editInfosModal = function(infos) {
-    $scope.openEditInfosModal = true
-    $scope.editInfosAthlete.id = infos.id
-    $scope.editInfosAthlete.athlete = infos.athlete
-    $scope.editInfosAthlete.sex = infos.sex
-    $scope.editInfosAthlete.age = infos.age
-    $scope.editInfosAthlete.height = infos.height
-    $scope.editInfosAthlete.weight = infos.weight
-    $scope.editInfosAthlete.team = infos.team
-    $scope.editInfosAthlete.medal = infos.medal
+  $scope.editProductModal = function(product) {
+    $scope.openEditProductModal = true
+    $scope.editProduct.id = product.id
+    $scope.editProduct.athlete = product.athlete
+    $scope.editProduct.sex = product.sex
+    $scope.editProduct.age = product.age
+    $scope.editProduct.height = product.height
+    $scope.editProduct.weight = product.weight
+    $scope.editProduct.team = product.team
+    $scope.editProduct.medal = product.medal
   }
 
   $scope.viewMore = function(treeStr, id) {

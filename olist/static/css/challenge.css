@@ -106,7 +106,7 @@ table td{
     background-color: #fff;
     padding: 40px 60px;
 }
-input[type="text"], input[type="number"], select {
+input[type="text"], input[type="number"], select, textarea {
     width: 70%;
     padding: 10px 18px;
     margin: 4px 0;

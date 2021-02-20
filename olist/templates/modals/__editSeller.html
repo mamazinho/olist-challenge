@@ -1,50 +1,37 @@
-<h4>Edit Athlete Infos Modal</h4>
-<form id="editInfos">
+<h4>Edit Seller Modal</h4>
+<form id="editSeller">
     <label>
-        <span>ID of the athlete: </span>
-        <input name="athlete" ng-model="editInfosAthlete.athlete" type="number" placeholder="ID (You can find this in first column)">
+        <span>Nick Name (Fantasy name): </span>
+        <input ng-model="editSeller.nick_name" type="text" placeholder="Seller fantasy name" required>
     </label>
+
     <label>
-        <span>Age: </span>
-        <input name="age" ng-model="editInfosAthlete.age" type="number" placeholder="Age">
+        <span>Corporate Name: </span>
+        <input ng-model="editSeller.corporate_name" type="text" placeholder="Seller corporate name" required>
     </label>
+
     <label>
-        <span>Height: </span>
-        <input name="height" ng-model="editInfosAthlete.height" type="number" placeholder="Height">
+        <span>Seller CNPJ: </span>
+        <input ng-model="editSeller.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers)" required>
     </label>
+
     <label>
-        <span>Weight: </span>
-        <input name="weight" ng-model="editInfosAthlete.weight" type="number" placeholder="Weight">
+        <span>Contact Email: </span>
+        <input ng-model="editSeller.contact_email" type="text" placeholder="Seller contact email" required>
     </label>
+
     <label>
-        <span>Team: </span>
-        <input name="team" ng-model="editInfosAthlete.team" type="text" placeholder="Team">
+        <span>Phone Number: </span>
+        <input ng-model="editSeller.phone_number" type="number" placeholder="Seller phone number" required>
     </label>
+
     <label>
-        <span>Medal: </span>
-        <select name="medal" ng-model="editInfosAthlete.medal">
-            <option value="">No medals</option>
-            <option value="Gold">Gold</option>
-            <option value="Silver">Silver</option>
-            <option value="Bronze">Bronze</option>
-        </select>
-    </label>
-    <label>
-        <span>Sex: </span>
-        <label>
-            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="M" required>Male
-        </label>
-        <label>
-            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="F" required>Female
-        </label>
-    </label>
-    <label>
-        <span>Event ID: </span>
-        <input name="event" ng-model="editInfosAthlete.event" type="number" placeholder="Event ID (You can find this in first column of events)">
+        <span>Seller Address: </span>
+        <input ng-model="editSeller.address" type="text" placeholder="Seller address" required>
     </label>
 
     <div class="buttons">
-        <button class="main" ng-click="updateInfos()">Update</button>
-        <button class="cancel" ng-click="openEditInfosModal=false">Cancel</button>
+        <button class="main" ng-click="updateSeller()">Update</button>
+        <button class="cancel" ng-click="openEditSellerModal=false">Cancel</button>
     </div>
 </form>
