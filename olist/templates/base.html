@@ -40,23 +40,23 @@
             </div>
         </section>
 
-        <section class="container" ng-if="active_tab=='products'">
-            {% include 'products.html' %}
+        <section class="container">
+            <div ng-if="active_tab=='products'">
+                {% include 'products.html' %}
+            </div>
+
+            <div ng-if="active_tab=='sellers'">
+                {% include 'sellers.html' %}
+            </div>
+
+            <div ng-if="active_tab=='marketplaces'">
+                {% include 'marketPlaces.html' %}
+            </div>
+
+            <div ng-if="active_tab=='categories'">
+                {% include 'categories.html' %}
+            </div>
         </section>
 
-        <section class="container" ng-show="active_tab=='sellers'">
-            <span>nossa</span>
-            {% include 'sellers.html' %}
-        </section>
-
-        <section class="container" ng-if="active_tab=='marketplaces'">
-            <span>nossa</span>
-            {% include 'marketPlaces.html' %}
-        </section>
-
-        <section class="container" ng-if="active_tab=='categories'">
-            <span>nossa</span>
-            {% include 'categories.html' %}
-        </section>
     </body>
 </html>

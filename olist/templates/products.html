@@ -1,10 +1,7 @@
 <section ng-controller="ProductsCtrl">
     <section class="content">
-        <h4>This tab shows the events, it just serve to not pollute the athletes tab and give a vision about the athletes that participated of determined event.</h4>
-        <p>Here you can manipulate all informations about a event. You can create, edit and delete a event. </p>
-        <p>You can't manipulate the athletes, for this operations, go to Athletes tab, clicking in the button above.</p>
-        <p>To add athletes to an event, you need go to Athlete tab and add an information, then you can add the event to an athlete.</p>
-        <p>The headers change automatically according the level in tree structure.</p>
+        <h4>This tab shows the products.</h4>
+        <p>Here you can manipulate all informations about a product. You can create, edit and delete it. </p>
 
         <div class="buttons">
             <button class="main" ng-click="openCreateEventModal=true">Create new product</button>
@@ -66,9 +63,4 @@
             </div>
         </div>
     </section>
-
-    <div class="buttons">
-        <button ng-click="getEvents('prev')">Previous Page</button>
-        <button class="main" ng-click="getEvents('next')">Next Page</button>
-    </div>
 </setion>

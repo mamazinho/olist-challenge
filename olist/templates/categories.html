@@ -1,14 +1,14 @@
 <section ng-controller="CategoriesCtrl">
     <section class="content">
         <h4>This tab shows the athletes, group by the them and explicit all informations about him and give you each event that the athlete participated for period of his life.</h4>
-        <p>Here you can manipulate all informations about an athlete, including his informations. You can create, edit and delete an athlete and his informations.</p>
+        <p>Here you can manipulate all informations about an athlete, including his informations. You can create, edit and delete it.</p>
         <p>The IDs serve to give informations for determined athlete.</p>
         <p>You can't manipulate the events, for this operations, go to Events tab, clicking in the button above.</p>
         <p>The headers change automatically according the level in tree structure.</p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateAthleteModal=true">Create new athlete</button>
-            <button class="main" ng-click="openCreateInfosModal=true">Give informations for an athlete</button>
+            <button class="main" ng-click="openCreateAthleteModal=true">Create new category</button>
+            <button class="main" ng-click="openCreateInfosModal=true">Edit category</button>
         </div>
 
         <div class="filter">
@@ -74,9 +74,4 @@
             </div>
         </div>
     </section>
-
-    <div class="buttons">
-        <button ng-click="getAthletes('prev')">Previous Page</button>
-        <button class="main" ng-click="getAthletes('next')">Next Page</button>
-    </div>
 </section>
