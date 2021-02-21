@@ -38,6 +38,12 @@ class ProductAPITest(APITestCase):
         response = self.client.patch(f'/api/products/{id}/', self.edit_product)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_delete_product_api(self):
+        response = self.__create_product()
+        id = response.json()['id']
+        response = self.client.delete(f'/api/products/{id}/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
     def __create_product(self):
         category = self.client.post('/api/categories/', self.create_category)
         category_id = [category.json()['id']]
