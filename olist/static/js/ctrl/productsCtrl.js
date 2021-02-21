@@ -127,6 +127,7 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
     $scope.openCreateProductModal = true
     $scope.productCategories = []
     $scope.createProduct.categories = []
+    $scope.editProduct.categories = []
     $scope.auxCategories = angular.copy($scope.allCategories)
   }
   
