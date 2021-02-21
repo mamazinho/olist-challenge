@@ -1,49 +1,54 @@
-# from django.test import TestCase
-# from challenge.models import Athlete, AthleteInfo, Event
-# from challenge.serializers import AthleteInfoSerializer, AthleteSerializer, EventSerializer, EventOnlySerializer, AthleteNewInfoSerializer
+from django.test import TestCase
+from olist.models import Product, Category, MarketPlace, Seller
+from olist.serializers import CategorySerializer, ProductSerializer, MarketPlaceSerializer, SellerSerializer
 
-# class ModelsTest(TestCase):
+class ModelsTest(TestCase):
 
-#     def setUp(self):
-#         self.athlete = Athlete.objects.create(
-#             athlete_name = 'Matheus'
-#         )
-#         self.athlete_info = AthleteInfo.objects.create(
-#             athlete = self.athlete,
-#             sex = 'M',
-#             age = 20,
-#             height = 1.76,
-#             weight = 60,
-#             team = 'Brasil',
-#             medal = 'Gold'
-#         )
-#         self.event = Event.objects.create(
-#             event_name = 'olympics',
-#             city = 'Curitiba',
-#             sport = 'parkour',
-#             season = 'Summer',
-#             year = 2020,
-#             games = '2020 Summer'
-#         )
+    @classmethod
+    def setUpTestData(cls):
+        cls.product = Product.objects.create(
+            product_name = 'Teste',
+            product_description = 'This is a test product',
+            product_value = 25.50,
+        )
+        cls.category = Category.objects.create(
+            category_name = 'Teste Category',
+            category_description = 'This is a test category'
+        )
+        cls.mp = MarketPlace.objects.create(
+            market_place_name = 'Teste MP',
+            market_place_description = 'This is a test marketplace',
+            site = 'test.com',
+            contact_email = 'test@test.com',
+            phone_number = 41999996666,
+            technical_contact = 'test',
+        )
+        cls.seller = Seller.objects.create(
+            nick_name = 'Test Seller',
+            corporate_name = 'We will be the best sellers in the world',
+            seller_cnpj = 12345678901234,
+            contact_email = 'test@test.com',
+            phone_number = 41999996666,
+            address = 'test street',
+        )
+        cls.product.categories.set([cls.category.id])
 
-#         self.athlete_info.event.set([self.event.id])
+    def test_product_serializer(self):
+        serializer = ProductSerializer(instance=self.product)
+        self.assertEqual(serializer.data['product_value'], 25.50)
 
-#     def test_event_serializer(self):
-#         serializer = EventSerializer(instance=self.event)
-#         self.assertEqual(serializer.data['city'], 'Curitiba')
-
-#     def test_event_only_serializer(self):
-#         serializer = EventOnlySerializer(instance=self.event)
-#         self.assertEqual(serializer.data['event_name'], 'olympics')
+    def test_category_serializer(self):
+        serializer = CategorySerializer(instance=self.category)
+        self.assertEqual(serializer.data['category_name'], 'Teste Category')
         
-#     def test_athlete_info_serializer(self):
-#         serializer = AthleteInfoSerializer(instance=self.athlete_info)
-#         self.assertEqual(serializer.data['age'], 20)
+    def test_mp_serializer(self):
+        serializer = MarketPlaceSerializer(instance=self.mp)
+        self.assertEqual(serializer.data['technical_contact'], 'test')
 
-#     def test_athlete_new_info_serializer(self):
-#         serializer = AthleteNewInfoSerializer(instance=self.athlete_info)
-#         self.assertEqual(serializer.data['weight'], 60)
+    def test_seller_serializer(self):
+        serializer = SellerSerializer(instance=self.seller)
+        self.assertEqual(serializer.data['phone_number'], 41999996666)
 
-#     def test_athlete_serializer(self):
-#         serializer = AthleteSerializer(instance=self.athlete)
-#         self.assertEqual(serializer.data['athlete_name'], 'Matheus')
+    # def test_athlete_serializer(self):
+    #     serializer = AthleteSerializer(instance=self.athlete)
+    #     self.assertEqual(serializer.data['athlete_name'], 'Matheus')

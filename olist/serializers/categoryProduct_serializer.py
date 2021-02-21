@@ -7,8 +7,6 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    # event = EventOnlySerializer(read_only=True, many=True)
-
     class Meta:
         model = Product
         fields = '__all__'
@@ -22,7 +20,6 @@ class CategoryProductSerializer(serializers.ModelSerializer):
 
     
 class ProductCategorySerializer(serializers.ModelSerializer):
-    # event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all(), many=True)
     categories = CategorySerializer(read_only=True, many=True)
 
     class Meta:
