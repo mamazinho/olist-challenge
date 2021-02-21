@@ -65,7 +65,6 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
   // Update Product
   $scope.updateProduct = function() {
     var data = JSON.stringify($scope.editProduct)
-    console.log('EDDDDD', $scope.editProduct)
     HttpFctr(`products/${$scope.editProduct.id}`, 'PATCH', {data}).then(function(){
       $scope.getProducts()
       $scope.openEditProductModal = false
@@ -115,6 +114,7 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
     $scope.editProduct.product_description = product.product_description
     $scope.editProduct.product_value = product.product_value
     $scope.editProduct.categories = []
+    $scope.createProduct.categories = []
     $scope.productCategories = []
     $scope.auxCategories = angular.copy($scope.allCategories)
     for (category in product.categories) {
@@ -126,6 +126,7 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
   $scope.openCreateProduct = function() {
     $scope.openCreateProductModal = true
     $scope.productCategories = []
+    $scope.createProduct.categories = []
     $scope.auxCategories = angular.copy($scope.allCategories)
   }
   

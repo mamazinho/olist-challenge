@@ -16,7 +16,7 @@ class Seller(models.Model):
         max_length=255,
         default='',
     )
-    seller_cnpj = models.IntegerField(
+    seller_cnpj = models.BigIntegerField(
         db_column='selCNPJ',
         default=0,
     )
