@@ -69,8 +69,10 @@ table th, ul.header {
     text-align: left;
     text-transform: uppercase;
     font-size: 14px;
-    color: rgb(105, 105, 105);
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgb(15, 227, 159);
+    color: white;
 }
 
 table td{

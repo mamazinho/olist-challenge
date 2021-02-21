@@ -1,12 +1,12 @@
-<h4>Create Category Modal</h4>
+<h4>Advanced filter for Category</h4>
 <form id="categoryAf">
     <label>
         <span>Category Name: </span>
-        <input ng-model="params.category_name" type="text" placeholder="Category name">
+        <input ng-model="params.category_name" type="text" placeholder="Category name" maxlength="100">
     </label>
     <label>
         <span>Category Description: </span>
-        <input ng-model="params.category_description" type="text" placeholder="Category escription">
+        <textarea ng-model="params.category_description" type="text" placeholder="Category description (max: 255 characters)" maxlength="255"></textarea>
     </label>
 
     <div class="buttons">

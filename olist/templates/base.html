@@ -26,11 +26,11 @@
     <body id="challenge" ng-app="challenge" ng-controller="BaseCtrl">
         <section class="container">
             <h3>Welcome to Olist challenge</h3>
-            <p>This platform it's a complete CRUD of a complex data structure, with Back-end in Django rest framework and Front-end in AngularJs.</p>
-            <p>
-                <span>The project use the Serializers, ViewSets and routers of Django Rest Framework.<span>
-                <span>More details you can find on README documentation.</span>
-            </p>
+            <p>This platform it's a complete CRUD, with Back-end in Django rest framework and Front-end in AngularJs. More details you can find on README documentation.</p>
+            <p>All filters can read part of a text or number, ex: Product is 'Truck', you can write only 'Tru' (if more products starts with 'tru', it will be returned).</p>
+            <p>Details of how to fill an input are always in the input placeholder.</p>
+            <p>The filters are case insensitive (has no difference between 'a' and 'A'). All tabs has filters.</p>
+            <p>Normal filters (search bar) search the result in any field. Advanced filters give you the possibility to combine filters to get a result</p>
             <h4>To change between tabs, click in the buttons below</h4>
             <div class="buttons">
                 <button ng-class="{main: active_tab=='products'}" ng-click="active_tab='products'">Products</button>

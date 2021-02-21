@@ -12,21 +12,21 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
     $scope.createProduct = {
       'product_name': '',
       'product_description': '',
-      'product_value': 0,
+      'product_value': '',
       'categories': [],
     }
     $scope.editProduct = {
       'id': 0,
       'product_name': '',
       'product_description': '',
-      'product_value': 0,
+      'product_value': '',
       'categories': [],
     }
     $scope.params = {
       'value': '',
       'product_name': '',
       'product_description': '',
-      'product_value': 0,
+      'product_value': '',
       'categories': [],
     }
     $scope.getProducts()

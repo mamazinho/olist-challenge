@@ -2,32 +2,32 @@
 <form id="createSeller">
     <label>
         <span>Nick Name (Fantasy name): </span>
-        <input ng-model="createSeller.nick_name" type="text" placeholder="Seller fantasy name" required>
+        <input ng-model="createSeller.nick_name" type="text" placeholder="Seller fantasy name" maxlength="64" required>
     </label>
 
     <label>
         <span>Corporate Name: </span>
-        <input ng-model="createSeller.corporate_name" type="text" placeholder="Seller corporate name" required>
+        <input ng-model="createSeller.corporate_name" type="text" placeholder="Seller corporate name" maxlength="255" required>
     </label>
 
     <label>
         <span>Seller CNPJ: </span>
-        <input ng-model="createSeller.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers)" required>
+        <input ng-model="createSeller.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers. Ex: 12345678901234)" maxlength="14" required>
     </label>
 
     <label>
         <span>Contact Email: </span>
-        <input ng-model="createSeller.contact_email" type="text" placeholder="Seller contact email" required>
+        <input ng-model="createSeller.contact_email" type="text" placeholder="Seller contact email (example@olist.com)" maxlength="100" required>
     </label>
 
     <label>
         <span>Phone Number: </span>
-        <input ng-model="createSeller.phone_number" type="number" placeholder="Seller phone number (only numbers)" required>
+        <input ng-model="createSeller.phone_number" type="number" placeholder="Seller phone number (only numbers. Ex: 41999996666)" maxlength="13" required>
     </label>
 
     <label>
         <span>Seller Address: </span>
-        <input ng-model="createSeller.address" type="text" placeholder="Seller address" required>
+        <input ng-model="createSeller.address" type="text" placeholder="Seller address (example street, Curitiba, PR)" maxlength="255" required>
     </label>
 
     <div class="buttons">

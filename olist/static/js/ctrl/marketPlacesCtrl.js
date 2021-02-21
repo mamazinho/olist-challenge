@@ -10,7 +10,7 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
       'market_place_description': '',
       'site': '',
       'contact_email': '',
-      'phone_number': 0,
+      'phone_number': '',
       'technical_contact': '',
     }
     $scope.editMP = {
@@ -19,7 +19,7 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
       'market_place_description': '',
       'site': '',
       'contact_email': '',
-      'phone_number': 0,
+      'phone_number': '',
       'technical_contact': '',
     }
     $scope.params = {
@@ -28,7 +28,7 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
       'market_place_description': '',
       'site': '',
       'contact_email': '',
-      'phone_number': 0,
+      'phone_number': '',
       'technical_contact': '',
     }
     $scope.getMPs()

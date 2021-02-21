@@ -1,7 +1,7 @@
 <section ng-controller="SellersCtrl">
     <section class="content">
         <h4>This tab shows the sellers.</h4>
-        <p>Here you can manipulate all informations about a seller. You can create, edit and delete it.</p>
+        <p>Here you can see and manipulate all informations about a seller. You can create, edit and delete it.</p>
 
         <div class="buttons">
             <button class="main" ng-click="openCreateSellerModal=true">Create new seller</button>
@@ -10,7 +10,7 @@
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by seller features (Press Enter to search, if empty returns all list again)" 
+                    placeholder="Filter by sellers features (Press Enter to search, if empty returns all list again)" 
                     ng-model="params.value" 
                     ng-keyup="$event.keyCode == 13 && getSellers()"
                 >
