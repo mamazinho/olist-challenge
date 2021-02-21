@@ -2,32 +2,32 @@
 <form id="createMP">
     <label>
         <span>MP Name: </span>
-        <input ng-model="createMP.market_place_name" type="text" placeholder="MP name" required>
+        <input ng-model="createMP.market_place_name" type="text" placeholder="MarketPlace name" maxlength="100" required>
     </label>
 
     <label>
         <span>MP Description: </span>
-        <textarea ng-model="createMP.market_place_description" type="text" placeholder="MP Description" required></textarea>
+        <textarea ng-model="createMP.market_place_description" type="text" placeholder="MarketPlace description (max: 255 characters)" maxlength="255" required></textarea>
     </label>
 
     <label>
         <span>MP Site: </span>
-        <input ng-model="createMP.site" type="text" placeholder="MP Site" required>
+        <input ng-model="createMP.site" type="text" placeholder="MarketPlace Site (https://olist.com/)" maxlength="255" required>
     </label>
 
     <label>
         <span>Contact Email: </span>
-        <input ng-model="createMP.contact_email" type="text" placeholder="MP contact email" required>
+        <input ng-model="createMP.contact_email" type="text" placeholder="MarketPlace contact email (example@olist.com)" maxlength="100" required>
     </label>
 
     <label>
         <span>Phone Number: </span>
-        <input ng-model="createMP.phone_number" type="number" placeholder="MP phone number (only numbers)" required>
+        <input ng-model="createMP.phone_number" type="number" placeholder="MarketPlace phone number (only numbers. Ex: 41999996666)" maxlength="13" required>
     </label>
 
     <label>
         <span>MP technical contact: </span>
-        <input ng-model="createMP.technical_contact" type="text" placeholder="MP technical contact" required>
+        <input ng-model="createMP.technical_contact" type="text" placeholder="MarketPlace technical contact (Email, name, or number)" maxlength="255" required>
     </label>
 
     <div class="buttons">

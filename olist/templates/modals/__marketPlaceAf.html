@@ -2,32 +2,32 @@
 <form id="MpAf">
     <label>
         <span>MP Name: </span>
-        <input ng-model="params.market_place_name" type="text" placeholder="MP name">
+        <input ng-model="params.market_place_name" type="text" placeholder="MarketPlace name" maxlength="100">
     </label>
 
     <label>
         <span>MP Description: </span>
-        <textarea ng-model="params.market_place_description" type="text" placeholder="MP Description"></textarea>
+        <textarea ng-model="params.market_place_description" type="text" placeholder="MarketPlace description (max: 255 characters)" maxlength="255"></textarea>
     </label>
 
     <label>
         <span>MP Site: </span>
-        <input ng-model="params.site" type="text" placeholder="MP Site">
+        <input ng-model="params.site" type="text" placeholder="MarketPlace Site (https://olist.com/)" maxlength="255">
     </label>
 
     <label>
         <span>Contact Email: </span>
-        <input ng-model="params.contact_email" type="text" placeholder="MP contact email">
+        <input ng-model="params.contact_email" type="text" placeholder="MarketPlace contact email (example@olist.com)" maxlength="100">
     </label>
 
     <label>
         <span>Phone Number: </span>
-        <input ng-model="params.phone_number" type="number" placeholder="MP phone number (only numbers)">
+        <input ng-model="params.phone_number" type="number" placeholder="MarketPlace phone number (only numbers. Ex: 41999996666)" maxlength="13">
     </label>
 
     <label>
         <span>MP technical contact: </span>
-        <input ng-model="params.technical_contact" type="text" placeholder="MP technical contact">
+        <input ng-model="params.technical_contact" type="text" placeholder="MarketPlace technical contact (Email, name, or number)" maxlength="255">
     </label>
 
     <div class="buttons">
