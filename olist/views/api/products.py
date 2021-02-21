@@ -45,13 +45,3 @@ class ProductViewSet(viewsets.ModelViewSet):
             new_params[f'{param}__icontains'] = params[param]
 
         return new_params
-
-
-class ProductCategoryViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-
-    def get_serializer_class(self):
-        if self.action in ['create', 'update']:
-            return ProductSerializer
-
-        return ProductSerializer
