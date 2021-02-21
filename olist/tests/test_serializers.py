@@ -48,7 +48,3 @@ class ModelsTest(TestCase):
     def test_seller_serializer(self):
         serializer = SellerSerializer(instance=self.seller)
         self.assertEqual(serializer.data['phone_number'], 41999996666)
-
-    # def test_athlete_serializer(self):
-    #     serializer = AthleteSerializer(instance=self.athlete)
-    #     self.assertEqual(serializer.data['athlete_name'], 'Matheus')
