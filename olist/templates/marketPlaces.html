@@ -1,10 +1,10 @@
 <section ng-controller="MarketPlacesCtrl">
     <section class="content">
-        <h4>This tab shows the Market places.</h4>
-        <p>Below you can see and manipulate all informations about a Market Place (MP). You can create, edit and delete it.</p>
+        <h4>This tab shows the MarketPlaces.</h4>
+        <p>Below you can see and manipulate all informations about a MarketPlace (MP). You can create, edit and delete it.</p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateMPModal=true">Create new Market Place</button>
+            <button class="main" ng-click="openCreateMPModal=true">Create new MarketPlace</button>
         </div>
 
         <div class="filter">
@@ -60,8 +60,8 @@
                     <td>{[ mp.contact_email ]}</td>
                     <td>{[ mp.phone_number ]}</td>
                     <td>{[ mp.technical_contact ]}</td>
-                    <td style="cursor: pointer" ng-click="editMPModal(mp)"><img src="static/img/edit.png" alt="Edit Market Place" width="22"/></td>
-                    <td style="cursor: pointer" ng-click="deleteMP(mp.id)"><img src="static/img/delete.png" alt="Delete Market Place" width="22"></td>
+                    <td style="cursor: pointer" ng-click="editMPModal(mp)"><img src="static/img/edit.png" alt="Edit MarketPlace" width="22"/></td>
+                    <td style="cursor: pointer" ng-click="deleteMP(mp.id)"><img src="static/img/delete.png" alt="Delete MarketPlace" width="22"></td>
                 </tr>
             </tbody>
         </table>
