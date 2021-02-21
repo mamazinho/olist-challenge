@@ -1,7 +1,7 @@
 <section ng-controller="CategoriesCtrl">
     <section class="content">
         <h4>This tab shows the Categories.</h4>
-        <p>Below you can manipulate all informations about a category. You can create, edit and delete it.</p>
+        <p>Below you can see and manipulate all informations about a category. You can create, edit and delete it.</p>
 
         <div class="buttons">
             <button class="main" ng-click="openCreateCategoryModal=true">Create new category</button>
@@ -10,7 +10,7 @@
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by category features (Press Enter to search, if empty returns all list again)" 
+                    placeholder="Filter by categories features (Press Enter to search, if empty returns all list again)" 
                     ng-model="params.value" 
                     ng-keyup="$event.keyCode == 13 && getCategories()"
                 >
