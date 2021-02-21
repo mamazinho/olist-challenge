@@ -8,7 +8,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         params = self.request.query_params
-        if self.action in ['create', 'partial_update']:
+        if self.action in ['create', 'update', 'partial_update']:
             return ProductSerializer
         if params and 'productList' in params:
             return ProductSerializer
@@ -36,7 +36,6 @@ class ProductViewSet(viewsets.ModelViewSet):
         condition = Q(product_name__icontains=value) \
                     |Q(product_description__icontains=value) \
                     |Q(product_value__icontains=value) \
-                    |Q(categories__in=value) \
 
         return condition
 

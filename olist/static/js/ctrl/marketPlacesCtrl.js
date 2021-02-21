@@ -24,7 +24,6 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
     }
     $scope.params = {
       'value': '',
-      'id': 0,
       'market_place_name': '',
       'market_place_description': '',
       'site': '',

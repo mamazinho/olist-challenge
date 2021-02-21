@@ -17,7 +17,6 @@ challenge.controller('CategoriesCtrl', function($scope, HttpFctr, $rootScope){
     }
     $scope.params = {
       'value': '',
-      'id': 0,
       'category_name': '',
       'category_description': '',
     }

@@ -2,7 +2,7 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
 
   $scope.__init__ = function(){
     $scope.products = []
-    $scope.categories = []
+    $scope.allCategories = []
     $scope.auxCategories = []
     $scope.openCreateProductModal = false
     $scope.openEditProductModal = false
@@ -24,13 +24,13 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
     }
     $scope.params = {
       'value': '',
-      'id': 0,
       'product_name': '',
       'product_description': '',
       'product_value': 0,
       'categories': [],
     }
     $scope.getProducts()
+    $scope.getCategories()
   }
 
   // Get the Products from API
@@ -40,20 +40,17 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
       $scope.products = response
       $scope.openProductAdvanceFilter = false
       $scope.params = {}
-      $scope.getCategories()
     })
   }
 
   $scope.getCategories = function() {
     HttpFctr('categories', 'GET', {params: {productList: true}}).then(function(response){
-      $scope.categories = response
-      $scope.auxCategories = response
+      $scope.allCategories = response
     })
   }
 
   // Create new Product on API
   $scope.createNewProduct = function() {
-    console.log('vai criar', $scope.createProduct)
     var data = JSON.stringify($scope.createProduct)
     HttpFctr('products', 'POST', {data}).then(function(){
       $scope.getProducts()
@@ -68,11 +65,11 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
   // Update Product
   $scope.updateProduct = function() {
     var data = JSON.stringify($scope.editProduct)
-    console.log('AAAAAAAAAA', $scope.editProduct)
+    console.log('EDDDDD', $scope.editProduct)
     HttpFctr(`products/${$scope.editProduct.id}`, 'PATCH', {data}).then(function(){
       $scope.getProducts()
       $scope.openEditProductModal = false
-      $scope.editProduct = {'categories': []}
+      $scope.editProduct = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
@@ -90,25 +87,25 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
   }
 
   $scope.insertProductCategory = function(category_id) {
-    var category = $scope.categories.filter(cat => cat.id == category_id)[0]
+    var category = $scope.allCategories.filter(cat => cat.id == category_id)[0]
     if (!category) return
     $scope.createProduct.categories.push(category.id)
     $scope.editProduct.categories.push(category.id)
     $scope.productCategories.push(category)
-    var indexToDelete = $scope.auxCategories.findIndex((cat) => cat.id == category_id)
-    indexToDelete >= 0 ? $scope.auxCategories.splice(indexToDelete, 1) : $scope.auxCategories
+    $scope.findAndDeleteIndex($scope.auxCategories, category_id)
   }
 
-  $scope.removeProductCategory = function(category_name) {
-    var category = $scope.categories.filter(cat => cat.category_name == category_name)[0]
-    console.log(category)
+  $scope.removeProductCategory = function(category) {
     if (!category) return
-    // $scope.createProduct.categories.push(category.id)
-    // $scope.editProduct.categories.push(category.id)
-    // console.log('passa aqui', category.category_name)
-    // $scope.productCategories.push(category.category_name)
-    // var indexToDelete = $scope.categories.findIndex((cat) => cat.id == category_id)
-    // indexToDelete >= 0 ? $scope.categories.splice(indexToDelete, 1) : $scope.categories
+    $scope.findAndDeleteIndex($scope.createProduct.categories, category.id)
+    $scope.findAndDeleteIndex($scope.editProduct.categories, category.id)
+    $scope.findAndDeleteIndex($scope.productCategories, category.id)
+    $scope.auxCategories.push(category)
+  }
+
+  $scope.findAndDeleteIndex = function(list, toFind) {
+    var indexToDelete = list.findIndex((cat) => cat.id == toFind || cat == toFind)
+    indexToDelete >= 0 ? list.splice(indexToDelete, 1) : list
   }
 
   $scope.editProductModal = function(product) {
@@ -117,10 +114,19 @@ challenge.controller('ProductsCtrl', function($scope, HttpFctr, $rootScope){
     $scope.editProduct.product_name = product.product_name
     $scope.editProduct.product_description = product.product_description
     $scope.editProduct.product_value = product.product_value
+    $scope.editProduct.categories = []
+    $scope.productCategories = []
+    $scope.auxCategories = angular.copy($scope.allCategories)
     for (category in product.categories) {
       var category_id = product.categories[category].id
       $scope.insertProductCategory(category_id)
     }
+  }
+  
+  $scope.openCreateProduct = function() {
+    $scope.openCreateProductModal = true
+    $scope.productCategories = []
+    $scope.auxCategories = angular.copy($scope.allCategories)
   }
   
   $scope.onlyValidParams = function() {

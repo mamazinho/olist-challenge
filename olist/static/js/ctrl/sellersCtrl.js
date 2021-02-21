@@ -24,7 +24,6 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
     }
     $scope.params = {
       'value': '',
-      'id': 0,
       'nick_name': '',
       'corporate_name': '',
       'seller_cnpj': '',
