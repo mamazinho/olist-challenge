@@ -16,8 +16,9 @@ class MarketPlace(models.Model):
         max_length=255,
         default='',
     )
-    site = models.FloatField(
+    site = models.CharField(
         db_column='mplSite',
+        max_length=255,
         default=0
     )
     contact_email = models.EmailField(
@@ -25,7 +26,7 @@ class MarketPlace(models.Model):
         max_length=100,
         default='',
     )
-    phone_number = models.IntegerField(
+    phone_number = models.BigIntegerField(
         db_column='mplPhoneNumber',
         default=0,
     )

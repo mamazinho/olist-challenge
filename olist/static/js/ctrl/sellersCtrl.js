@@ -2,9 +2,9 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
 
   $scope.__init__ = function(){
     $scope.sellers = []
-    $scope.filter_name = ''
     $scope.openCreateSellerModal = false
     $scope.openEditSellerModal = false
+    $scope.openSellerAdvanceFilter = false
     $scope.createSeller = {
       'nick_name': '',
       'corporate_name': '',
@@ -14,7 +14,7 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
       'address': '',
     }
     $scope.editSeller = {
-      'id': '',
+      'id': 0,
       'nick_name': '',
       'corporate_name': '',
       'seller_cnpj': '',
@@ -23,15 +23,24 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
       'address': '',
     }
     $scope.params = {
-      'name': null
+      'value': '',
+      'id': 0,
+      'nick_name': '',
+      'corporate_name': '',
+      'seller_cnpj': '',
+      'contact_email': '',
+      'phone_number': '',
+      'address': '',
     }
     $scope.getSellers()
   }
 
   $scope.getSellers = function() {
+    $scope.onlyValidParams()
     HttpFctr('sellers', 'GET', {params: $scope.params}).then(function(response){
-      $scope.sellers = response.results
-      $scope.params.name = null
+      $scope.sellers = response
+      $scope.params = {}
+      $scope.openSellerAdvanceFilter = false
     })
   }
 
@@ -50,7 +59,7 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
   // Update Event
   $scope.updateSeller = function() {
     var data = JSON.stringify($scope.editSeller)
-    HttpFctr(`sellers/${$scope.editSeller.id}`, 'PUT', {data}).then(function(){
+    HttpFctr(`sellers/${$scope.editSeller.id}`, 'PATCH', {data}).then(function(){
       $scope.getSellers()
       $scope.openEditSellerModal = false
       $scope.editSeller = {}
@@ -70,6 +79,24 @@ challenge.controller('SellersCtrl', function($scope, HttpFctr, $rootScope){
     })
   }
   
+  $scope.editSellerModal = function(seller) {
+    $scope.openEditSellerModal = true
+    $scope.editSeller.id = seller.id
+    $scope.editSeller.nick_name = seller.nick_name
+    $scope.editSeller.corporate_name = seller.corporate_name
+    $scope.editSeller.seller_cnpj = seller.seller_cnpj
+    $scope.editSeller.contact_email = seller.contact_email
+    $scope.editSeller.phone_number = seller.phone_number
+    $scope.editSeller.address = seller.address
+  }
+
+  $scope.onlyValidParams = function() {
+    for (param in $scope.params) {
+      if (!$scope.params[param])
+        delete $scope.params[param]
+    }
+  }
+
   $scope.__init__()
 
 })

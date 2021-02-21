@@ -9,9 +9,33 @@ class MarketPlaceViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         params = self.request.query_params
-        if params and 'athlete_name' in params:
-            athlete_name = params.get('athlete_name').title()
-            queryset = MarketPlace.objects.filter(athlete_name__icontains=athlete_name)
+
+        if params:
+            if 'value' in params:
+                condition = self.__get_any_field(params)
+                queryset = MarketPlace.objects.filter(condition)
+            else:
+                params = self.__format_params(params)
+                queryset = MarketPlace.objects.filter(**params)
+
         else:
             queryset = MarketPlace.objects.all()
         return queryset.order_by('-id')
+
+    def __get_any_field(self, params):
+        value = params.get('value')
+        condition = Q(market_place_name__icontains=value) \
+                    |Q(market_place_description__icontains=value) \
+                    |Q(site__icontains=value) \
+                    |Q(contact_email__icontains=value) \
+                    |Q(phone_number__icontains=value) \
+                    |Q(technical_contact__icontains=value)
+
+        return condition
+
+    def __format_params(self, params):
+        new_params = {}
+        for param in params:
+            new_params[f'{param}__icontains'] = params[param]
+
+        return new_params

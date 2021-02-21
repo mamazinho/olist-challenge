@@ -1,0 +1,42 @@
+<h4>Advanced filter for Sellers</h4>
+<form id="sellerAf">
+    <label>
+        <span>Seller ID: </span>
+        <input ng-model="params.id" type="number" placeholder="Seller ID">
+    </label>
+
+    <label>
+        <span>Nick Name (Fantasy name): </span>
+        <input ng-model="params.nick_name" type="text" placeholder="Seller fantasy name">
+    </label>
+
+    <label>
+        <span>Corporate Name: </span>
+        <input ng-model="params.corporate_name" type="text" placeholder="Seller corporate name">
+    </label>
+
+    <label>
+        <span>Seller CNPJ: </span>
+        <input ng-model="params.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers)">
+    </label>
+
+    <label>
+        <span>Contact Email: </span>
+        <input ng-model="params.contact_email" type="text" placeholder="Seller contact email">
+    </label>
+
+    <label>
+        <span>Phone Number: </span>
+        <input ng-model="params.phone_number" type="number" placeholder="Seller phone number">
+    </label>
+
+    <label>
+        <span>Seller Address: </span>
+        <input ng-model="params.address" type="text" placeholder="Seller address">
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="getSellers()">Search</button>
+        <button class="cancel" ng-click="openSellerAdvanceFilter=false">Cancel</button>
+    </div>
+</form>

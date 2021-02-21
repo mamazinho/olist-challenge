@@ -155,3 +155,36 @@ ul.sub-child {
 ul.last-child {
     padding-left: 45px;
 }
+td, th {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+}
+  
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(15, 227, 159);
+    color: white;
+}
+
+.arrow {
+    width: 20px;
+    cursor: pointer;
+    flex: 0;
+}
+
+.tiny-table {
+    font-size: smaller;
+}
+
+.tiny-table td{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+}

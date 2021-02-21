@@ -1,0 +1,20 @@
+<h4>Create Category Modal</h4>
+<form id="categoryAf">
+    <label>
+        <span>Category ID: </span>
+        <input ng-model="params.id" type="number" placeholder="Category ID">
+    </label>
+    <label>
+        <span>Category Name: </span>
+        <input ng-model="params.category_name" type="text" placeholder="Category name">
+    </label>
+    <label>
+        <span>Category Description: </span>
+        <input ng-model="params.category_description" type="text" placeholder="Category escription">
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="getCategories()">Search</button>
+        <button class="cancel" ng-click="openCategoryAdvanceFilter=false">Cancel</button>
+    </div>
+</form>

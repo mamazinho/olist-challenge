@@ -1,0 +1,41 @@
+<h4>Advanced filter for market places</h4>
+<form id="MpAf">
+    <label>
+        <span>MP ID: </span>
+        <input ng-model="params.id" type="number" placeholder="MP ID">
+    </label>
+    <label>
+        <span>MP Name: </span>
+        <input ng-model="params.market_place_name" type="text" placeholder="MP name">
+    </label>
+
+    <label>
+        <span>MP Description: </span>
+        <textarea ng-model="params.market_place_description" type="text" placeholder="MP Description"></textarea>
+    </label>
+
+    <label>
+        <span>MP Site: </span>
+        <input ng-model="params.site" type="text" placeholder="MP Site">
+    </label>
+
+    <label>
+        <span>Contact Email: </span>
+        <input ng-model="params.contact_email" type="text" placeholder="MP contact email">
+    </label>
+
+    <label>
+        <span>Phone Number: </span>
+        <input ng-model="params.phone_number" type="number" placeholder="MP phone number (only numbers)">
+    </label>
+
+    <label>
+        <span>MP technical contact: </span>
+        <input ng-model="params.technical_contact" type="text" placeholder="MP technical contact">
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="getMPs()">Search</button>
+        <button class="cancel" ng-click="openMPAdvanceFilter=false">Cancel</button>
+    </div>
+</form>

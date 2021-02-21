@@ -14,7 +14,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CategoryProductSerializer(serializers.ModelSerializer):
-    product = ProductSerializer(read_only=True)
+    products = ProductSerializer(read_only=True, many=True)
 
     class Meta:
         model = Category
@@ -23,8 +23,8 @@ class CategoryProductSerializer(serializers.ModelSerializer):
     
 class ProductCategorySerializer(serializers.ModelSerializer):
     # event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all(), many=True)
-    Category = CategorySerializer(read_only=True)
+    categories = CategorySerializer(read_only=True, many=True)
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'product_name', 'product_description', 'product_value', 'categories']

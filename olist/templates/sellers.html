@@ -5,17 +5,19 @@
 
         <div class="buttons">
             <button class="main" ng-click="openCreateSellerModal=true">Create new seller</button>
-            <button class="main" ng-click="openEditSellerModal=true">Edit seller</button>
         </div>
 
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by athlete name (Press Enter to search, if empty returns all list again)" 
-                    ng-model="params.athlete_name" 
-                    ng-keyup="$event.keyCode == 13 && getAthletes()"
+                    placeholder="Filter by seller features (Press Enter to search, if empty returns all list again)" 
+                    ng-model="params.value" 
+                    ng-keyup="$event.keyCode == 13 && getSellers()"
                 >
             </label>
+            <div class="buttons">
+                <button class="main" ng-click="openSellerAdvanceFilter=true">Advanced Filter</button>
+            </div>
         </div>
 
         <div class="modal" ng-show="openCreateSellerModal">
@@ -30,24 +32,38 @@
                 {% include 'modals/__editSeller.html' %}
             </div>
         </div>
-
-        <div class="box">
-
-            {% include 'modals/__headers.html' %}
-
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="">
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
+        <div class="modal" ng-show="openSellerAdvanceFilter">
+            <div class="overlay" ng-click="openSellerAdvanceFilter=false"></div>
+            <div class="content">
+                {% include 'modals/__sellerAf.html' %}
+            </div>
         </div>
+
+        <table class="box">
+            <thead>
+                <tr>
+                    <th>Nick Name</th>
+                    <th>Corporate Name</th>
+                    <th>CNPJ</th>
+                    <th>Contact Email</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="seller in sellers">
+                    <td>{[ seller.nick_name ]}</td>
+                    <td>{[ seller.corporate_name ]}</td>
+                    <td>{[ seller.seller_cnpj ]}</td>
+                    <td>{[ seller.contact_email ]}</td>
+                    <td>{[ seller.phone_number ]}</td>
+                    <td>{[ seller.address ]}</td>
+                    <td style="cursor: pointer" ng-click="editSellerModal(seller)"><img src="static/img/edit.png" alt="Edit seller" width="22"/></td>
+                    <td style="cursor: pointer" ng-click="deleteSeller(seller.id)"><img src="static/img/delete.png" alt="Delete seller" width="22"></td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </section>

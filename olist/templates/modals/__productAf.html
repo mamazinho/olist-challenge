@@ -1,0 +1,30 @@
+<h4>Create Product Modal</h4>
+<form id="productAf">
+    <label>
+        <span>Product ID: </span>
+        <input name="event_name" ng-model="params.id" type="number" placeholder="Product ID">
+    </label>
+    <label>
+        <span>Name: </span>
+        <input name="event_name" ng-model="params.product_name" type="text" placeholder="Product name">
+    </label>
+    <label>
+        <span>Description: </span>
+        <textarea name="city" ng-model="params.product_description" placeholder="Product description"></textarea>
+    </label>
+    <label>
+        <span>Value: </span>
+        <input ng-model="params.product_value" type="number" step="0.01" placeholder="Product value">
+    </label>
+    <label>
+        <span>Categories: </span>
+        <select ng-model="params.categories">
+            <option ng-repeat="category in categories">{[ category.category_name ]}</option>
+        </select>
+    </label>
+
+    <div class="buttons">
+        <button class="main" ng-click="getProducts()">Search</button>
+        <button class="cancel" ng-click="openCreateProductModal=false">Cancel</button>
+    </div>
+</form>

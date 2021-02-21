@@ -23,7 +23,7 @@ class Product(models.Model):
     categories = models.ManyToManyField(
         'Category',
         db_column='proCategories',
-        related_name='product',
+        related_name='products',
     )
 
     def __str__(self):

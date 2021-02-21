@@ -1,64 +1,55 @@
 challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
 
   $scope.__init__ = function(){
-    $scope.athletes = []
-    $scope.treeIds = []
-    $scope.secondTreeIds = []
-    $scope.filter_name = ''
-    $scope.renderHeader = 'eventInEvent'
-    $scope.openCreateEventModal = false
-    $scope.openEditEventModal = false
-    $scope.createEvent = {
-      'event_name': '',
-      'city': '',
-      'sport': '',
-      'year': '',
-      'season': '',
-      'games': '',
+    $scope.marketplaces = []
+    $scope.openCreateMPModal = false
+    $scope.openEditMPModal = false
+    $scope.openMPAdvanceFilter = false
+    $scope.createMP = {
+      'market_place_name': '',
+      'market_place_description': '',
+      'site': '',
+      'contact_email': '',
+      'phone_number': 0,
+      'technical_contact': '',
     }
-    $scope.editEvent = {
-      'id': '',
-      'event_name': '',
-      'city': '',
-      'sport': '',
-      'year': '',
-      'season': '',
-      'games': '',
+    $scope.editMP = {
+      'id': 0,
+      'market_place_name': '',
+      'market_place_description': '',
+      'site': '',
+      'contact_email': '',
+      'phone_number': 0,
+      'technical_contact': '',
     }
-    $scope.offset_next = null,
-    $scope.offset_prev = null,
-    $scope.actual_offset = null
     $scope.params = {
-      'limit': 10,
-      'limitoffset': 20,
-      'offset': null,
-      'event_name': null
+      'value': '',
+      'id': 0,
+      'market_place_name': '',
+      'market_place_description': '',
+      'site': '',
+      'contact_email': '',
+      'phone_number': 0,
+      'technical_contact': '',
     }
-    $scope.getEvents()
+    $scope.getMPs()
   }
 
-  // Get the Events from API
-  $scope.getEvents = function(goTo) {
-    if (goTo)
-      $scope.params.offset = goTo == 'next' ? $scope.offset_next : $scope.offset_prev
-    else
-      $scope.params.offset = $scope.actual_offset
-    $scope.actual_offset =  $scope.params.offset
-    HttpFctr('events', 'GET', {params: $scope.params}).then(function(response){
-      $scope.events = response.results
-      $scope.params.event_name = null
-      $scope.offset_next = response.next ? new URL(response.next).searchParams.get('offset') : null
-      $scope.offset_prev = response.previous ? new URL(response.previous).searchParams.get('offset') : null
+  $scope.getMPs = function() {
+    $scope.onlyValidParams()
+    HttpFctr('market-places', 'GET', {params: $scope.params}).then(function(response){
+      $scope.marketplaces = response
+      $scope.params = {}
+      $scope.openMPAdvanceFilter = false
     })
   }
-  // Create new Event on API
-  $scope.createNewEvent = function() {
-    $scope.createEvent.games = `${$scope.createEvent.year} ${$scope.createEvent.season}`
-    var data = JSON.stringify($scope.createEvent)
-    HttpFctr('events', 'POST', {data}).then(function(){
-      $scope.getEvents()
-      $scope.openCreateEventModal = false
-      $scope.createEvent = {}
+
+  $scope.createNewMP = function() {
+    var data = JSON.stringify($scope.createMP)
+    HttpFctr('market-places', 'POST', {data}).then(function(){
+      $scope.getMPs()
+      $scope.openCreateMPModal = false
+      $scope.createMP = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
@@ -66,12 +57,12 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
   }
 
   // Update Event
-  $scope.updateEvent = function() {
-    var data = JSON.stringify($scope.editEvent)
-    HttpFctr(`events/${$scope.editEvent.id}`, 'PUT', {data}).then(function(){
-      $scope.getEvents()
-      $scope.openEditEventModal = false
-      $scope.editEvent = {}
+  $scope.updateMP = function() {
+    var data = JSON.stringify($scope.editMP)
+    HttpFctr(`market-places/${$scope.editMP.id}`, 'PATCH', {data}).then(function(){
+      $scope.getMPs()
+      $scope.openEditMPModal = false
+      $scope.editMP = {}
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
@@ -79,38 +70,30 @@ challenge.controller('MarketPlacesCtrl', function($scope, HttpFctr, $rootScope){
   }
 
   // Delete Event
-  $scope.deleteEvent = function(athlete_id) {
-    HttpFctr(`events/${athlete_id}`, 'DELETE').then(function(){
-      $scope.getEvents()
+  $scope.deleteMP = function(mp_id) {
+    HttpFctr(`market-places/${mp_id}`, 'DELETE').then(function(){
+      $scope.getMPs()
     }).catch((error) => {
       console.log('ERROR >>', error)
       alert(window.errorMessage)
     })
   }
-
-  $scope.editEventModal = function(infos) {
-    $scope.openEditEventModal = true
-    $scope.editEvent.id = infos.id
-    $scope.editEvent.event_name = infos.event_name
-    $scope.editEvent.city = infos.city
-    $scope.editEvent.sport = infos.sport
-    $scope.editEvent.year = infos.year
-    $scope.editEvent.season = infos.season
-    $scope.editEvent.games = infos.games
+  
+  $scope.editMPModal = function(mp) {
+    $scope.openEditMPModal = true
+    $scope.editMP.id = mp.id
+    $scope.editMP.market_place_name = mp.market_place_name
+    $scope.editMP.market_place_description = mp.market_place_description
+    $scope.editMP.site = mp.site
+    $scope.editMP.contact_email = mp.contact_email
+    $scope.editMP.phone_number = mp.phone_number
+    $scope.editMP.technical_contact = mp.technical_contact
   }
 
-  $scope.viewMore = function(treeStr, id) {
-    tree = eval(`$scope.${treeStr}`)
-    if (!tree.includes(id)) {
-      tree.push(id)
-      if (treeStr == 'treeIds')
-        $scope.renderHeader = 'infosInEvent'
-    } else {
-      tree.splice(tree.findIndex((item) => item == id), 1)
-      if (treeStr == 'treeIds')
-        $scope.renderHeader = 'eventInEvent'
-      else if (treeStr == 'secondTreeIds')
-        $scope.renderHeader = 'infosInEvent'
+  $scope.onlyValidParams = function() {
+    for (param in $scope.params) {
+      if (!$scope.params[param])
+        delete $scope.params[param]
     }
   }
 

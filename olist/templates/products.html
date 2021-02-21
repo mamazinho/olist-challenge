@@ -5,16 +5,18 @@
 
         <div class="buttons">
             <button class="main" ng-click="openCreateProductModal=true">Create new product</button>
-            <button class="edit" ng-click="openEditProductModal=true">Edit product</button>
         </div>
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by event name (Press Enter to search, if empty returns all list again)" 
-                    ng-model="params.event_name" 
-                    ng-keyup="$event.keyCode == 13 && getEvents()"
+                    placeholder="Filter by product features (Press Enter to search, if empty returns all list again)" 
+                    ng-model="params.value" 
+                    ng-keyup="$event.keyCode == 13 && getProducts()"
                 >
             </label>
+            <div class="buttons">
+                <button class="main" ng-click="openProductAdvanceFilter=true">Advanced Filter</button>
+            </div>
         </div>
 
         <div class="modal" ng-show="openCreateProductModal">
@@ -31,36 +33,34 @@
             </div>
         </div>
 
-        <div class="box">
-
-            {% include 'modals/__headers.html' %}
-
-            <div ng-repeat="event in events | filter: filter_name track by $index">
-                <ul>
-                    <li class="arrow" ng-click="viewMore('treeIds', event.id)" ng-show="event.athlete_infos.length > 0"><span>&#10148;</span></li>
-                    <li class="id">{[ event.id ]}</li>
-                    <li class="event_name">{[ event.event_name ]}</li>
-                    <li class="city">{[ event.city ]}</li>
-                    <li class="sport">{[ event.sport ]}</li>
-                    <li class="season">{[ event.season ]}</li>
-                    <li class="year">{[ event.year ]}</li>
-                    <li class="games">{[ event.games ]}</li>
-                    <li><button ng-click="editEventModal(event)" class="edit">Edit Event</button></li>
-                    <li><button ng-click="deleteEvent(event.id)">Delete Event</button></li>
-                </ul>
-                <div ng-show="treeIds.includes(event.id)" ng-repeat="infos in event.athlete_infos">
-                    <ul class="child">
-                        <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
-                        <li class="athlete_name">{[ infos.athlete.athlete_name ]}</li>
-                        <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
-                        <li class="age">{[ infos.age == null ? 'No informed' : infos.age ]}</li>
-                        <li class="height">{[ infos.height == null ? 'No informed' : infos.height ]}</li>
-                        <li class="weight">{[ infos.weight == null ? 'No informed' : infos.weight ]}</li>
-                        <li class="team">{[ infos.team ]}</li>
-                        <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
-                    </ul>
-                <div>
+        <div class="modal" ng-show="openProductAdvanceFilter">
+            <div class="overlay" ng-click="openProductAdvanceFilter=false"></div>
+            <div class="content">
+                {% include 'modals/__marketPlaceAf.html' %}
             </div>
         </div>
+
+        <table class="box">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Value</th>
+                    <th>Product Categories</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products">
+                    <td>{[ product.product_name ]}</td>
+                    <td>{[ product.product_description ]}</td>
+                    <td>{[ product.product_value ]}</td>
+                    <td><span ng-repeat="category in product.categories">{[ category.category_name ]}; </span></td>
+                    <td style="cursor: pointer" ng-click="editProductModal(product)"><img src="static/img/edit.png" alt="Edit product" width="22"/></td>
+                    <td style="cursor: pointer" ng-click="deleteProduct(product.id)"><img src="static/img/delete.png" alt="Delete product" width="22"></td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </setion>

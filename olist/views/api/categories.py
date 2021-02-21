@@ -1,25 +1,43 @@
 from olist.models import Category, Product
 from olist.serializers import CategorySerializer, CategoryProductSerializer
 from rest_framework import viewsets
-from rest_framework.decorators import action
+from django.db.models import Q
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    serializer_class = CategorySerializer
+    # serializer_class = CategoryProductSerializer
+
+    def get_serializer_class(self):
+        params = self.request.query_params
+        if params and 'productList' in params:
+            return CategorySerializer
+
+        return CategoryProductSerializer
 
     def get_queryset(self):
         params = self.request.query_params
-        if params and 'athlete_name' in params:
-            athlete_name = params.get('athlete_name').title()
-            queryset = Category.objects.filter(athlete_name__icontains=athlete_name)
+
+        if params and not 'productList' in params:
+            if 'value' in params:
+                condition = self.__get_any_field(params)
+                queryset = Category.objects.filter(condition)
+            else:
+                params = self.__format_params(params)
+                queryset = Category.objects.filter(**params)
+
         else:
             queryset = Category.objects.all()
         return queryset.order_by('-id')
 
-class CategoryProductViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
+    def __get_any_field(self, params):
+        value = params.get('value')
+        condition = Q(category_name__icontains=value) \
+                    |Q(category_description__icontains=value) \
 
-    def get_serializer_class(self):
-        if self.action in ['create', 'update']:
-            return CategorySerializer
+        return condition
 
-        return CategoryProductSerializer
+    def __format_params(self, params):
+        new_params = {}
+        for param in params:
+            new_params[f'{param}__icontains'] = params[param]
+
+        return new_params

@@ -25,7 +25,7 @@ class Seller(models.Model):
         max_length=100,
         default='',
     )
-    phone_number = models.IntegerField(
+    phone_number = models.BigIntegerField(
         db_column='selPhoneNumber',
     )
     address = models.CharField(

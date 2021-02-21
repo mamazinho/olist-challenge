@@ -1,20 +1,16 @@
 <h4>Create Category Modal</h4>
-<form id="createInfos">
+<form id="createCategory">
     <label>
-        <span>Category ID: </span>
-        <input name="athlete" ng-model="createInfosAthlete.athlete" type="number" placeholder="Athlete ID (You can find this in first column)">
+        <span>Category Name: </span>
+        <input ng-model="createCategory.category_name" type="text" placeholder="Category name">
     </label>
     <label>
-        <span>Age: </span>
-        <input name="age" ng-model="createInfosAthlete.age" type="number" placeholder="Age">
-    </label>
-    <label>
-        <span>Height: </span>
-        <input name="height" ng-model="createInfosAthlete.height" type="number" step="0.01" placeholder="Height">
+        <span>Category Description: </span>
+        <input ng-model="createCategory.category_description" type="text" placeholder="Category escription">
     </label>
 
     <div class="buttons">
-        <button class="main" ng-click="createCategory()">Create</button>
+        <button class="main" ng-click="createNewCategory()">Create</button>
         <button class="cancel" ng-click="openCreateCategoryModal=false">Cancel</button>
     </div>
 </form>

@@ -1,47 +1,36 @@
-<h4>Edit Athlete Infos Modal</h4>
-<form id="editInfos">
+<h4>Edit Product Modal</h4>
+<form id="editProduct">
     <label>
-        <span>ID of the athlete: </span>
-        <input name="athlete" ng-model="editInfosAthlete.athlete" type="number" placeholder="ID (You can find this in first column)">
+        <span>Name: </span>
+        <input name="event_name" ng-model="editProduct.product_name" type="text" placeholder="Product name">
     </label>
     <label>
-        <span>Age: </span>
-        <input name="age" ng-model="editInfosAthlete.age" type="number" placeholder="Age">
+        <span>Description: </span>
+        <textarea name="city" ng-model="editProduct.product_description" placeholder="Product description"></textarea>
     </label>
     <label>
-        <span>Height: </span>
-        <input name="height" ng-model="editInfosAthlete.height" type="number" placeholder="Height">
+        <span>Value: </span>
+        <input ng-model="editProduct.product_value" type="number" step="0.01" placeholder="Product value">
     </label>
     <label>
-        <span>Weight: </span>
-        <input name="weight" ng-model="editInfosAthlete.weight" type="number" placeholder="Weight">
+        <span>Product Categories: </span>
+        <table class="tiny-table">
+            <tr ng-repeat="productCategory in productCategories">
+                <td>{[ productCategory.category_name ]}</td>
+                <td style="cursor: pointer" ng-click="removeProductCategory(productCategory.id)"><img src="static/img/delete.png" width="12"></td>
+            </tr>
+        </table>
     </label>
     <label>
-        <span>Team: </span>
-        <input name="team" ng-model="editInfosAthlete.team" type="text" placeholder="Team">
-    </label>
-    <label>
-        <span>Medal: </span>
-        <select name="medal" ng-model="editInfosAthlete.medal">
-            <option value="">No medals</option>
-            <option value="Gold">Gold</option>
-            <option value="Silver">Silver</option>
-            <option value="Bronze">Bronze</option>
+        <span>Select Categories: </span>
+        <select ng-model="selectedCategory" 
+                ng-options="category.id as category.category_name for category in categories | orderBy:'category_name'"
+                ng-change="insertProductCategory(selectedCategory)"
+        >
+            <option value="">Selecione um usuário</option>
         </select>
     </label>
-    <label>
-        <span>Sex: </span>
-        <label>
-            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="M" required>Male
-        </label>
-        <label>
-            <input name="sex" ng-model="editInfosAthlete.sex" type="radio" value="F" required>Female
-        </label>
-    </label>
-    <label>
-        <span>Event ID: </span>
-        <input name="event" ng-model="editInfosAthlete.event" type="number" placeholder="Event ID (You can find this in first column of events)">
-    </label>
+
 
     <div class="buttons">
         <button class="main" ng-click="updateProduct()">Update</button>

@@ -1,12 +1,15 @@
-<h4>Edit Athlete Modal</h4>
-<form id="editAthlete">
+<h4>Edit Category Modal</h4>
+<form id="editCategory">
     <label>
-        <span>Athlete Name: </span>
-        <input name="name" ng-model="editAthlete.athlete_name" type="text" placeholder="Athlete name" required>
+        <span>Category Name: </span>
+        <input ng-model="editCategory.category_name" type="text" placeholder="Category name">
     </label>
-
+    <label>
+        <span>Category Description: </span>
+        <input ng-model="editCategory.category_description" type="text" placeholder="Category escription">
+    </label>
     <div class="buttons">
-        <button class="main" type="button" ng-click="updateAthlete()">Update</button>
+        <button class="main" type="button" ng-click="updateCategory()">Update</button>
         <button class="cancel" type="button" ng-click="openEditCategoryModal=false">Cancel</button>
     </div>
 </form>

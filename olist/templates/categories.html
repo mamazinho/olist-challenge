@@ -1,24 +1,23 @@
 <section ng-controller="CategoriesCtrl">
     <section class="content">
-        <h4>This tab shows the athletes, group by the them and explicit all informations about him and give you each event that the athlete participated for period of his life.</h4>
-        <p>Here you can manipulate all informations about an athlete, including his informations. You can create, edit and delete it.</p>
-        <p>The IDs serve to give informations for determined athlete.</p>
-        <p>You can't manipulate the events, for this operations, go to Events tab, clicking in the button above.</p>
-        <p>The headers change automatically according the level in tree structure.</p>
+        <h4>This tab shows the Categories.</h4>
+        <p>Here you can manipulate all informations about a category. You can create, edit and delete it.</p>
 
         <div class="buttons">
             <button class="main" ng-click="openCreateCategoryModal=true">Create new category</button>
-            <button class="main" ng-click="openEditCategoryModal=true">Edit category</button>
         </div>
 
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by athlete name (Press Enter to search, if empty returns all list again)" 
-                    ng-model="params.athlete_name" 
-                    ng-keyup="$event.keyCode == 13 && getAthletes()"
+                    placeholder="Filter by category features (Press Enter to search, if empty returns all list again)" 
+                    ng-model="params.value" 
+                    ng-keyup="$event.keyCode == 13 && getCategories()"
                 >
             </label>
+            <div class="buttons">
+                <button class="main" ng-click="openCategoryAdvanceFilter=true">Advanced Filter</button>
+            </div>
         </div>
 
         <div class="modal" ng-show="openCreateCategoryModal">
@@ -34,44 +33,36 @@
                 {% include 'modals/__editCategory.html' %}
             </div>
         </div>
-
-        <div class="box">
-
-            {% include 'modals/__headers.html' %}
-
-            <div ng-repeat="athlete in athletes track by $index">
-                <ul>
-                    <li class="arrow" ng-click="viewMore('treeIds', athlete.id)" ng-show="athlete.athlete_infos.length > 0"><span>&#10148;</span></li>
-                    <li class="id">{[ athlete.id ]}</li>
-                    <li class="athlete_name">{[ athlete.athlete_name ]}</li>
-                    <li><button ng-click="editAthleteModal(athlete)" class="edit">Edit Athlete</button></li>
-                    <li><button ng-click="deleteAthlete(athlete.id)">Delete Athlete</button></li>
-                </ul>
-                <div ng-show="treeIds.includes(athlete.id)" ng-repeat="infos in athlete.athlete_infos">
-                    <ul class="child">
-                        <li class="arrow" ng-click="viewMore('secondTreeIds', infos.id)" ng-show="infos.event.length > 0"><span>&#10148;</span></li>
-                        <li class="sex">{[ infos.sex == 'F' ? 'Female' : 'Male' ]}</li>
-                        <li class="age">{[ infos.age == null ? 'No informed' : infos.age ]}</li>
-                        <li class="height">{[ infos.height == null ? 'No informed' : infos.height ]}</li>
-                        <li class="weight">{[ infos.weight == null ? 'No informed' : infos.weight ]}</li>
-                        <li class="team">{[ infos.team ]}</li>
-                        <li class="medal">{[ infos.medal == null ? 'No medals' : infos.medal ]}</li>
-                        <li><button ng-click="editInfosModal(infos)" class="edit">Edit Athlete Informations</button></li>
-                        <li><button ng-click="deleteInfos(infos.id)">Del Athlete Informations</button></li>
-                    </ul>
-                    <div ng-show="secondTreeIds.includes(infos.id)" ng-repeat="event in infos.event">
-                        <ul class="sub-child">
-                            <li class="arrow" ng-click="viewMore('thirdTreeIds', event.id)" ng-show="infos.events.length > 0"><span>&#10148;</span></li>
-                            <li class="event_name">{[ event.event_name ]}</li>
-                            <li class="city">{[ event.city ]}</li>
-                            <li class="sport">{[ event.sport ]}</li>
-                            <li class="season">{[ event.season ]}</li>
-                            <li class="year">{[ event.year ]}</li>
-                            <li class="games">{[ event.games ]}</li>
-                        </ul>
-                    <div>
-                <div>
+        <div class="modal" ng-show="openCategoryAdvanceFilter">
+            <div class="overlay" ng-click="openCategoryAdvanceFilter=false"></div>
+            <div class="content">
+                {% include 'modals/__categoryAf.html' %}
             </div>
         </div>
+
+        <table class="box">
+            <thead>
+                <tr>
+                    <th>View products</th>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="category in categories">
+                    <td class="arrow" ng-click="viewProducts=!viewProducts"><span>&#10148;</span></td>
+                    <td>{[ category.category_name ]}</td>
+                    <td>{[ category.category_description ]}</td>
+                    <td style="cursor: pointer" ng-click="editCategoryModal(category)"><img src="static/img/edit.png" alt="Edit Category" width="22"/></td>
+                    <td style="cursor: pointer" ng-click="deleteCategory(category.id)"><img src="static/img/delete.png" alt="Delete Category" width="22"></td>
+                </tr>
+                <tr ng-show="viewProducts" ng-repeat="product in category.products">
+                    <td>{[ product.product_name ]}</td>
+                </tr>
+                <tr ng-repeat-end=""></tr>
+            </tbody>
+        </table>
     </section>
 </section>

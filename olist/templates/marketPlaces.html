@@ -1,53 +1,69 @@
 <section ng-controller="MarketPlacesCtrl">
     <section class="content">
-        <h4>This tab shows the market places.</h4>
-        <p>Here you can manipulate all informations about a market place. You can create, edit and delete it.</p>
+        <h4>This tab shows the Market places.</h4>
+        <p>Here you can manipulate all informations about a Market Place (MP). You can create, edit and delete it.</p>
 
         <div class="buttons">
-            <button class="main" ng-click="openCreateAthleteModal=true">Create new market place</button>
-            <button class="main" ng-click="openCreateInfosModal=true">Edit market place</button>
+            <button class="main" ng-click="openCreateMPModal=true">Create new Market Place</button>
         </div>
 
         <div class="filter">
             <label>
                 <input type="text" 
-                    placeholder="Filter by athlete name (Press Enter to search, if empty returns all list again)" 
-                    ng-model="params.athlete_name" 
-                    ng-keyup="$event.keyCode == 13 && getAthletes()"
+                    placeholder="Filter by MPs features (Press Enter to search, if empty returns all list again)" 
+                    ng-model="params.value" 
+                    ng-keyup="$event.keyCode == 13 && getMPs()"
                 >
             </label>
+            <div class="buttons">
+                <button class="main" ng-click="openSellerAdvanceFilter=true">Advanced Filter</button>
+            </div>
         </div>
 
-        <div class="modal" ng-show="openCreateAthleteModal">
-            <div class="overlay" ng-click="openCreateAthleteModal=false"></div>
+        <div class="modal" ng-show="openCreateMPModal">
+            <div class="overlay" ng-click="openCreateMPModal=false"></div>
             <div class="content">
                 {% include 'modals/__createMarketPlace.html' %}
             </div>
         </div>
-
-        <div class="modal" ng-show="openEditAthleteModal">
-            <div class="overlay" ng-click="openEditAthleteModal=false"></div>
+        <div class="modal" ng-show="openEditMPModal">
+            <div class="overlay" ng-click="openEditMPModal=false"></div>
             <div class="content">
                 {% include 'modals/__editMarketPlace.html' %}
             </div>
         </div>
-
-        <div class="box">
-
-            {% include 'modals/__headers.html' %}
-
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="">
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="modal" ng-show="openMPAdvanceFilter">
+            <div class="overlay" ng-click="openMPAdvanceFilter=false"></div>
+            <div class="content">
+                {% include 'modals/__marketPlaceAf.html' %}
+            </div>
         </div>
+
+        <table class="box">
+            <thead>
+                <tr>
+                    <th>MP Name</th>
+                    <th>MP Description</th>
+                    <th>Site</th>
+                    <th>MP Contact Email</th>
+                    <th>MP Phone Number</th>
+                    <th>Technical Contact</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mp in marketplaces">
+                    <td>{[ mp.market_place_name ]}</td>
+                    <td>{[ mp.market_place_description ]}</td>
+                    <td>{[ mp.site ]}</td>
+                    <td>{[ mp.contact_email ]}</td>
+                    <td>{[ mp.phone_number ]}</td>
+                    <td>{[ mp.technical_contact ]}</td>
+                    <td style="cursor: pointer" ng-click="editMPModal(mp)"><img src="static/img/edit.png" alt="Edit Market Place" width="22"/></td>
+                    <td style="cursor: pointer" ng-click="deleteMP(mp.id)"><img src="static/img/delete.png" alt="Delete Market Place" width="22"></td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </section>
