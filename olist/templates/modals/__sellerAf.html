@@ -3,32 +3,32 @@
 
     <label>
         <span>Nick Name (Fantasy name): </span>
-        <input ng-model="params.nick_name" type="text" placeholder="Seller fantasy name">
+        <input ng-model="params.nick_name" type="text" placeholder="Seller fantasy name" maxlength="64">
     </label>
 
     <label>
         <span>Corporate Name: </span>
-        <input ng-model="params.corporate_name" type="text" placeholder="Seller corporate name">
+        <input ng-model="params.corporate_name" type="text" placeholder="Seller corporate name (social reason)" maxlength="255">
     </label>
 
     <label>
         <span>Seller CNPJ: </span>
-        <input ng-model="params.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers)">
+        <input ng-model="params.seller_cnpj" type="number" placeholder="Seller CNPJ (only numbers. Ex: 12345678901234)" maxlength="14">
     </label>
 
     <label>
         <span>Contact Email: </span>
-        <input ng-model="params.contact_email" type="text" placeholder="Seller contact email">
+        <input ng-model="params.contact_email" type="text" placeholder="Seller contact email (example@olist.com)" maxlength="100">
     </label>
 
     <label>
         <span>Phone Number: </span>
-        <input ng-model="params.phone_number" type="number" placeholder="Seller phone number">
+        <input ng-model="params.phone_number" type="number" placeholder="Seller phone number (only numbers. Ex: 41999996666)" maxlength="13">
     </label>
 
     <label>
         <span>Seller Address: </span>
-        <input ng-model="params.address" type="text" placeholder="Seller address">
+        <input ng-model="params.address" type="text" placeholder="Seller address (example street, Curitiba, PR)" maxlength="255">
     </label>
 
     <div class="buttons">
