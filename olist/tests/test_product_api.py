@@ -23,24 +23,26 @@ class ProductAPITest(APITestCase):
             'category_description': 'This is a test category',
         }
 
-    def test_get_info_api(self):
+    def test_get_product_api(self):
         response = self.client.get('/api/products/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_post_info_api(self):
-        response = self.__create_info()
+    def test_post_product_api(self):
+        response = self.__create_product()
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_patch_info_api(self):
-        response = self.__create_info()
+    def test_patch_product_api(self):
+        response = self.__create_product()
         id = response.json()['id']
+        self.edit_product['id'] = id
         response = self.client.patch(f'/api/products/{id}/', self.edit_product)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def __create_info(self):
+    def __create_product(self):
         category = self.client.post('/api/categories/', self.create_category)
         category_id = [category.json()['id']]
         self.create_product['categories'] = category_id
+        self.edit_product['categories'] = category_id
         response = self.client.post('/api/products/', self.create_product)
 
         return response

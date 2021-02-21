@@ -1,40 +1,49 @@
-# from django.test import TestCase
-# from challenge.models import Athlete, AthleteInfo, Event
+from django.test import TestCase
+from olist.models import Product, Category, MarketPlace, Seller
 
-# class ModelsTest(TestCase):
+class ModelsTest(TestCase):
 
-#     @classmethod
-#     def setUpTestData(cls):
-#         cls.athlete = Athlete.objects.create(
-#             athlete_name = 'Matheus'
-#         )
-#         cls.athlete_info = AthleteInfo.objects.create(
-#             athlete = cls.athlete,
-#             sex = 'M',
-#             age = 20,
-#             height = 1.76,
-#             weight = 60,
-#             team = 'Brasil',
-#             medal = 'Gold'
-#         )
-#         cls.event = Event.objects.create(
-#             event_name = 'olympics',
-#             city = 'Curitiba',
-#             sport = 'parkour',
-#             season = 'Summer',
-#             year = '2020',
-#             games = '2020 Summer'
-#         )
-#         cls.athlete_info.event.set([cls.event.id])
+    @classmethod
+    def setUpTestData(cls):
+        cls.product = Product.objects.create(
+            product_name = 'Teste',
+            product_description = 'This is a test product',
+            product_value = 25.50,
+        )
+        cls.category = Category.objects.create(
+            category_name = 'Teste Category',
+            category_description = 'This is a test category'
+        )
+        cls.mp = MarketPlace.objects.create(
+            market_place_name = 'Teste MP',
+            market_place_description = 'This is a test marketplace',
+            site = 'test.com',
+            contact_email = 'test@test.com',
+            phone_number = 41999996666,
+            technical_contact = 'test',
+        )
+        cls.seller = Seller.objects.create(
+            nick_name = 'Test Seller',
+            corporate_name = 'We will be the best sellers in the world',
+            seller_cnpj = 12345678901234,
+            contact_email = 'test@test.com',
+            phone_number = 41999996666,
+            address = 'test street',
+        )
+        cls.product.categories.set([cls.category.id])
 
-#     def test_athlete_model(self):
-#         record = Athlete.objects.all().first()
-#         self.assertEqual(record, self.athlete)
+    def test_product_model(self):
+        record = Product.objects.all().first()
+        self.assertEqual(record, self.product)
         
-#     def test_athlete_info_model(self):
-#         record = AthleteInfo.objects.all().first()
-#         self.assertEqual(record, self.athlete_info)
+    def test_category_info_model(self):
+        record = Category.objects.all().first()
+        self.assertEqual(record, self.category)
 
-#     def test_event_model(self):
-#         record = Event.objects.all().first()
-#         self.assertEqual(record, self.event)
+    def test_mp_model(self):
+        record = MarketPlace.objects.all().first()
+        self.assertEqual(record, self.mp)
+
+    def test_seller_model(self):
+        record = Seller.objects.all().first()
+        self.assertEqual(record, self.seller)
