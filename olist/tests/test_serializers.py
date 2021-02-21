@@ -2,7 +2,7 @@ from django.test import TestCase
 from olist.models import Product, Category, MarketPlace, Seller
 from olist.serializers import CategorySerializer, ProductSerializer, MarketPlaceSerializer, SellerSerializer
 
-class ModelsTest(TestCase):
+class SerializersTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
