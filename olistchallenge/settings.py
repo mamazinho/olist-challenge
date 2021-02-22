@@ -91,7 +91,10 @@ DATABASES = {
         'NAME': 'olist',
         'USER': 'olist',
         'PASSWORD': '0l1st',
-        'HOST': 'localhost',
+        'TEST': {
+             'MIRROR': 'default',
+        },
+        'HOST': 'mysql',    # Docker container
         'PORT': '3306',
     }
 }
