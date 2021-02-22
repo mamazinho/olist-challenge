@@ -21,14 +21,17 @@
             </tr>
         </table>
     </label>
-    <label>
+    <label ng-if="auxCategories.length > 0">
         <span>Select Categories: </span>
         <select ng-model="selectedCategory" 
                 ng-options="category.id as category.category_name for category in auxCategories | orderBy:'category_name'"
                 ng-change="insertProductCategory(selectedCategory)"
         >
-            <option value="">Selecione uma categoria</option>
+            <option value="">Choose a category</option>
         </select>
+    </label>
+    <label ng-if="auxCategories.length <= 0">
+        <span>You have no categories, create one before create a product</span>
     </label>
 
     <div class="buttons">

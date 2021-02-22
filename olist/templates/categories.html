@@ -52,7 +52,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat-start="category in categories">
-                    <td class="arrow" ng-click="viewProducts=!viewProducts"><span>&#10148;</span></td>
+                    <td class="arrow" ng-click="viewProducts=!viewProducts">
+                        <span ng-if="category.products.length > 0">&#10148;</span>
+                        <span ng-if="category.products.length <= 0">Have no products in this category</span>
+                    </td>
                     <td>{[ category.category_name ]}</td>
                     <td>{[ category.category_description ]}</td>
                     <td style="cursor: pointer" ng-click="editCategoryModal(category)"><img src="static/img/edit.png" alt="Edit Category" width="22"/></td>

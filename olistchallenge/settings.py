@@ -94,7 +94,7 @@ DATABASES = {
         'TEST': {
              'MIRROR': 'default',
         },
-        'HOST': 'mysql',    # Docker container
+        'HOST': 'localhost',    # Docker container
         'PORT': '3306',
     }
 }
